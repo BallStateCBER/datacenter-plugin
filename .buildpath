@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="src" path="Controller/Component"/>
+	<buildpathentry kind="src" path="Model/Behavior"/>
+	<buildpathentry kind="src" path="View/Common"/>
+	<buildpathentry kind="src" path="View/Elements"/>
+	<buildpathentry kind="src" path="View/Helper"/>
+	<buildpathentry kind="src" path="View/Layouts"/>
+	<buildpathentry kind="src" path="webroot/ckeditor"/>
+	<buildpathentry kind="src" path="webroot/js/tiny_mce/plugins/phpimage"/>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+</buildpath>

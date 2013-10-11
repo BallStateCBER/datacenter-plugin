@@ -1,0 +1,166 @@
+Guide to using the CakePHP template for the CBER Data Center
+
+To create a new Data Center site (starting with a copy of app_blank),
+	Edit \app_subsite\Config\core.php
+		Change $prefix to something specific to this subsite
+		Set the second parameter in Configure::write('data_center_subsite_url', ''); (e.g. 'http://subsite.cberdata.org')
+		Set the second parameter in Configure::write('data_center_subsite_title', ''); (e.g. 'Title of Subsite')
+		Change the values of Security.salt and Security.cipherSeed
+		Open SimpLESS and drag any of this site's .less files into it so that .css files will be automatically generated
+	
+To create a new Data Center site (starting with an unmodified app directory),
+	Copy \app_blank into a new directory called \app_subsite 
+		(replace 'subsite' with short, slugged version of site name)
+	Edit \app_subsite\Config\bootstrap.php
+		Add CakePlugin::load('DataCenter');
+	Edit \app_subsite\Config\core.php
+		Change $prefix to something specific to this subsite
+		Add Configure::write('data_center_subsite_url', ''); 
+			Change the second parameter to the production URL of the subsite's home page (e.g. http://subsite.cberdata.org)
+		Add Configure::write('data_center_subsite_title', '');
+			Change the second parameter to the subsite's title, which will be used in <title> and <h1 id="subsite_title">
+		Change the values of Security.salt and Security.cipherSeed
+	Edit \app_subsite\Controller\AppController.php 
+		Add the following to the AppController class:
+			public $helpers = array('Js' => array('Jquery'));
+			public $components = array('DataCenter.Flash');
+	Create \app_subsite\webroot\css\style.less
+		Open SimpLESS and drag style.less into it so that style.css will be automatically generated
+	Create \app_subsite\webroot\js\script.js
+	Replace the contents of \app_subsite\View\Layouts\default.ctp with the following
+		<?php $this->extend('DataCenter.default'); ?>
+		<div id="content">
+			<?php echo $this->fetch('content'); ?>
+		</div>
+	Replace the contents of \app_subsite\View\Layouts\ajax.ctp with the following
+		<?php $this->extend('DataCenter.ajax'); ?>
+		<?php echo $this->fetch('content'); ?>
+
+To edit the site's stylesheet
+	Edit the site's style.less file and use SimpLESS to compile it into style.css
+		- Happens automatically upon saving the .less file if SimpLESS is running
+		- Make sure that the prefix and minify options are selected in SimpLESS
+		- Check for any error messages in SimpLESS
+	Upload style.css
+	NOTE: When debug > 0, the LESS file is used. When debug == 0, the CSS file is used.
+
+To use a sidebar,
+	Create \app_subsite\View\Elements\sidebar.ctp
+	Include <?php $this->assign('sidebar', $this->element('sidebar')); ?> in appropriate view files or in the default layout
+
+To include Google Analytics
+	In \app_subsite\Config\core.php, add Configure::write('google_analytics_id', 'UA-XXXXX-X');
+	Replace UA-XXXXX-X with the ID corresponding to the correct website
+
+To display flash messages,
+	To display a normal message, place in the appropriate controller method: $this->Flash->set($message_body, $type); 
+		$type can be 'notification', 'success', or 'error', and defaults to 'notification' when omitted
+	To dump a variable: $this->Flash->set($variable, 'dump');
+	Convenience methods: success($message), error($message), dump($variable) 
+
+To replace the standard displayed subsite title,
+	In \app_subsite\View\Layouts\default.ctp, place the new title between <?php $this->start('subsite_title'); ?> and <?php $this->end(); ?>
+		You will probably want to wrap it with <h1 id="subsite_title">, with either the class 'max_width' or 'max_width_padded'
+
+To add special CSS and JS files,
+	In \app_subsite\View\Layouts\default.ctp, add lines like the following,
+		<?php $this->Html->css('tooltips', null, array('inline' => false)); ?>
+		<?php $this->Html->script('tooltips', array('inline' => false)); ?>
+
+To access the console, (Assuming that Windows path environment variables have been added: C:\xampp\php;C:\xampp\htdocs\data_center\lib\Cake\Console)
+	Open Command Prompt
+	cd C:\xampp\htdocs\data_center\app_subsite
+	cake
+
+To replace all textareas on a page with rich text editors,
+	In the appropriate view, add the following
+		<?php echo $this->element('rich_text_editor_init', array(), array('plugin' => 'DataCenter')); ?>
+
+To use the tagging system
+	Database:
+		CREATE TABLE IF NOT EXISTS `tags` (
+		  `id` int(10) unsigned NOT NULL auto_increment,
+		  `parent_id` int(10) default NULL,
+		  `lft` int(10) default NULL,
+		  `rght` int(10) default NULL,
+		  `name` varchar(255) default '',
+		  `selectable` tinyint(1) NOT NULL default '1',
+		  `user_id` int(11) default NULL,
+		  `created` datetime default NULL,
+		  PRIMARY KEY  (`id`)
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+	Model:
+		Create a Tag model with appropriate associations
+	Controller:
+		Include DataCenter.TagManager in the $components array of the appropriate controllers (or AppController)
+		In actions that include tag editing, set $available_tags and $selected_tags
+	View:
+		In views where tags are edited, place the following: <?php echo $this->element('tags/editor', compact('available_tags', 'selected_tags'), array('plugin' => 'DataCenter')); ?>
+
+To set up ACL,
+	http://book.cakephp.org/2.0/en/tutorials-and-examples/simple-acl-controlled-application/simple-acl-controlled-application.html
+	
+To use the ACL plugin (ACL control panel) (http://www.alaxos.ch/blaxos/pages/view/plugin_acl_2.0)
+	Set up ACL with User model (with fields 'name' and 'group_id') and Group model
+	Edit \app_subsite\Config\bootstrap.php
+		Add CakePlugin::load('Acl', array('bootstrap' => true));
+	Configure the 'admin' route: http://book.cakephp.org/2.0/en/development/routing.html
+	Make sure each User has a non-null group_id
+	Access the ACL manager via /admin/acl
+		Visit Permissions > Build missing AROs to populate ARO tree with Users under Groups
+	If a Missing Controller error appears, 
+		try putting 'plugin' => false and 'admin' => false into the parameters array of any calls to requestAction()
+	Note that the User with ID = 1 always has access to this plugin
+	Note that any links displayed alongside this plugin's content (like in a sidebar), if using the Router, should have 'admin' => false and 'plugin' => false
+		Otherwise, /admin/acl will be prepended to their URLs 
+
+To use the AutoLogin component (http://milesj.me/code/cakephp/auto-login)
+	Edit \app_subsite\Controller\AppController.php
+		Add the following to $components before 'Auth'
+			'DataCenter.AutoLogin' => array(
+				'username' => 'email',
+				'expires' => '+1 year'
+			)
+		Add the following to beforeFilter()
+			$this->AutoLogin->settings = array(
+				// Model settings
+				'model' => 'User',
+				'username' => 'email',
+				'password' => 'password',
+		 
+				// Controller settings
+				'plugin' => '',
+				'controller' => 'users',
+				'loginAction' => 'login',
+				'logoutAction' => 'logout',
+		 
+				// Cookie settings
+				'cookieName' => 'rememberMe',
+				'expires' => '+1 year',
+		 
+				// Process logic
+				'active' => true,
+				'redirect' => true,
+				'requirePrompt' => true
+			);
+	Edit \app_subsite\View\Users\login.ctp, add
+		echo $this->Form->input('auto_login', array(
+			'type' => 'checkbox', 
+			'label' => array('text' => ' Log me in automatically', 'style' => 'display: inline;'),
+			'checked' => true
+		));
+
+To use Sluggable behavior,
+	Add CakePlugin::load('Sluggable'); to bootstrap.php
+	Make sure that the appropriate model has a 'slug' DB field
+	Add this inside that model:
+		public $actsAs = array('Sluggable.Sluggable' => array(
+			'label' => 'title',
+			'slug' => 'slug',
+			'separator' => '-',
+			'overwrite' => true   
+		));
+
+To do:
+	Standard error pages
+	Create a standard print stylesheet. Ideas: http://designshack.net/articles/css/6-thinks-i-learned-about-print-stylesheets-from-html5-boilerplate/
