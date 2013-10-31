@@ -189,17 +189,21 @@
 				</div>
 				<section>
 					<section>
-						<h3>About Ball State CBER Data Center</h3>
-						<p>
-							Ball State CBER Data Center is one-stop shop for economic data including demographics, education, health, and social
-							capital. Our easy-to-use, visual web tools offer data collection and analysis for grant writers, economic developers, policy
-							makers, and the general public.
-						</p>
-						<p>
-							Ball State CBER Data Center (<a href="http://www.cberdata.org">www.cberdata.org</a>) is a product of the Center for Business and Economic Research at Ball State
-							University. CBER's mission is to conduct relevant and timely public policy research on a wide range of economic issues
-							affecting the state and nation. <a href="http://www.bsu.edu/cber">Learn more</a>.
-						</p>
+						<?php if ($this->fetch('footer_about')): ?>
+							<?php echo $this->fetch('footer_about'); ?>
+						<?php else: ?>
+							<h3>About Ball State CBER Data Center</h3>
+							<p>
+								Ball State CBER Data Center is one-stop shop for economic data including demographics, education, health, and social
+								capital. Our easy-to-use, visual web tools offer data collection and analysis for grant writers, economic developers, policy
+								makers, and the general public.
+							</p>
+							<p>
+								Ball State CBER Data Center (<a href="http://www.cberdata.org">www.cberdata.org</a>) is a product of the Center for Business and Economic Research at Ball State
+								University. CBER's mission is to conduct relevant and timely public policy research on a wide range of economic issues
+								affecting the state and nation. <a href="http://www.bsu.edu/cber">Learn more</a>.
+							</p>
+						<?php endif; ?>
 					</section>
 					<section>
 						<h3>Center for Business and Economic Research</h3>
