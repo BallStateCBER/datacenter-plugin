@@ -10,7 +10,7 @@
 	$google_analytics_id = Configure::read('google_analytics_id');
 	$not_localhost = isset($_SERVER['SERVER_NAME']) && stripos($_SERVER['SERVER_NAME'], 'localhost') === false;
 	if ($google_analytics_id && $not_localhost) {
-		$this->Js->buffer("_gaq.push(['_trackPageview', '".$this->request->here."']);");
+		$this->Js->buffer("ga('send', 'pageview', {'page': '".$this->request->here."','title': '".(isset($title_for_layout) ? $title_for_layout : "''")."'});");
 	}
 	echo $this->fetch('content');
 	echo $this->Js->writeBuffer();
