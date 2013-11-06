@@ -59,6 +59,10 @@
 			echo $this->fetch('css');
 			echo $this->fetch('scriptTop');
 		?>
+		
+		<!--[if lt IE 9]>
+			<script src="/data_center/js/html5shiv-printshiv.js"></script>
+		<![endif]-->
 	</head>
 	<body>
 		<?php echo $this->element('flash_messages', array(), array('plugin' => 'DataCenter')); ?>
