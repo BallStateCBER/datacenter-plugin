@@ -42,6 +42,13 @@ class FlashComponent extends Component {
 			);
 			$this->Session->delete('Message.auth');
 		}
+		if ($other_messages = $this->Session->read('Message.flash')) {
+			$stored_messages[] = array(
+					'message' => $other_messages['message'],
+					'class' => 'notification'
+			);
+			$this->Session->delete('Message.flash');
+		}
 		if ($stored_messages) {
 			foreach ($stored_messages as &$message) {
 				if ($message['class'] == 'dump') {
