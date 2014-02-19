@@ -6,7 +6,7 @@
 	 * Include this element in views like so: 
 	 * <?php echo $this->element('rich_text_editor_init', array(), array('plugin' => 'DataCenter')); ?>
 	 * 
-	 * To customize: http://docs.cksource.com/CKEditor_3.x/Developers_Guide/jQuery_Adapter
+	 * To customize: http://docs.ckeditor.com
 	 */	
 
 	$this->Html->script('/DataCenter/ckeditor/ckeditor.js', array('inline' => false));
