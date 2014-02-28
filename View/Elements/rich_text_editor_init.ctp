@@ -11,4 +11,12 @@
 
 	$this->Html->script('/DataCenter/ckeditor/ckeditor.js', array('inline' => false));
 	$this->Html->script('/DataCenter/ckeditor/adapters/jquery.js', array('inline' => false));
-	$this->Js->buffer("$('textarea').ckeditor({toolbar: 'Basic'});");
+	if (! isset($customConfig)) {
+		$customConfig = '';
+	}
+	$this->Js->buffer("
+		$('textarea').ckeditor({
+			toolbar: 'Basic',
+			customConfig: '$customConfig'
+		});
+	");
