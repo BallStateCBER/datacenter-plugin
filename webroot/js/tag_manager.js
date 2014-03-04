@@ -207,12 +207,12 @@ var TagManager = {
 		}).autocomplete({
 			source: function(request, response) {
 				$.getJSON('/tags/auto_complete', {
-					term: extractLast(request.term)
+					term: TagManager.extractLast(request.term)
 				}, response);
 			},
 			delay: 0,
 			search: function() {
-				var term = extractLast(this.value);
+				var term = TagManager.extractLast(this.value);
 				if (term.length < 2) {
 					return false;
 				}
@@ -226,7 +226,7 @@ var TagManager = {
 			},
 			select: function(event, ui) {
 				var tag_name = ui.item.label;
-				var terms = split(this.value);
+				var terms = TagManager.split(this.value);
 				terms.pop();
 				terms.push(tag_name);
 				// Add placeholder to get the comma-and-space at the end
@@ -249,13 +249,13 @@ var TagManager = {
 		}).autocomplete({
 			source: function(request, response) {
 				$.getJSON('/tags/auto_complete', {
-					term: extractLast(request.term)
+					term: TagManager.extractLast(request.term)
 				}, response);
 			},
 			delay: 0,
 			search: function() {
 				// custom minLength
-				var term = extractLast(this.value);
+				var term = TagManager.extractLast(this.value);
 				if (term.length < 2) {
 				//	return false;
 				}
@@ -274,7 +274,7 @@ var TagManager = {
 				var tag_id = ui.item.value;
 				TagManager.selectTag(tag_id, tag_name);
 				
-				var terms = split(this.value);
+				var terms = TagManager.split(this.value);
 				// Remove the term being typed from the input field
 				terms.pop();
 				if (terms.length > 0) {
@@ -286,5 +286,13 @@ var TagManager = {
 				return false;
 			}
 		});
+	},
+	
+	split: function (val) {
+		return val.split(/,\s*/);
+	},
+
+	extractLast: function (term) {
+		return this.split(term).pop();
 	}
 };
