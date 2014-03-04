@@ -1,0 +1,76 @@
+#tag_editing {
+	font-size: 90%; 
+	line-height: 16px; 
+	margin-bottom: 20px; 
+	overflow: visible; 
+	width: 100%;
+	
+	.label {
+		font-weight: bold;
+	}
+	img.expand_collapse {
+		height: 10px; 
+		width: 10px;
+	}
+	img.expand_collapse, 
+	img.leaf {
+		margin-left: -15px; 
+		padding-right: 8px;
+	}
+}
+#available_tags_container {
+	border: 1px solid #aaa; 
+	padding: 5px;
+	
+	> div {
+		width: 100%;
+	}
+}
+#available_tags {
+	max-height: 300px; 
+	overflow: auto;
+	ul {
+		margin: 0; 
+		padding-left: 15px; 
+		text-transform: capitalize;
+		
+		.submenu_handle {
+			cursor: pointer;
+		}
+	}
+	li {
+		list-style-type: none;
+	}
+	a {
+		&.selected {
+			color: #000; 
+			cursor: text;
+			
+			&:hover {
+				color: #000; 
+				text-decoration: none;
+			}
+		}
+	}
+}
+#selected_tags_container {
+	margin-top: 15px;
+}
+#selected_tags {
+	a:after {
+		content: ', ';
+	}
+	a:last-child:after {
+		content: '';
+	}
+}
+#tag_help_toggler {
+	float: right; 
+	margin-left: 5px;
+}
+.ui-autocomplete {
+	font-size: 80%;
+}
+#custom_tag_input_wrapper {
+	margin-top: 15px;
+}
