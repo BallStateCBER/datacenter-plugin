@@ -1,9 +1,11 @@
 var TagManager = {
 	tags: [],
 	selected_tags: [],
+	container: null,
 
 	init: function (container_selector) {
-		TagManager.createTagList(this.tags, container_selector);
+		this.container = $(container_selector);
+		this.createTagList(this.tags);
 		$('#new_tag_rules_toggler').click(function (event) {
 			event.preventDefault();
 			$('#new_tag_rules').slideToggle(200);
@@ -13,12 +15,13 @@ var TagManager = {
 		});
 	},
 	
+	
 	/**
 	 * @param data An array of tag objects
 	 * @param container $('#container_id')
 	 * @returns
 	 */
-	createTagList: function(data, container_selector) {
+	createTagList: function(data) {
 		var list = $('<ul></ul>');
 		var available_tags_container = $('#available_tags');
 		for (var i = 0; i < data.length; i++) {
@@ -98,7 +101,7 @@ var TagManager = {
 				}
 			}
 		}
-		$(container_selector).append(list);
+		this.container.append(list);
 	},
 
 	tagIsSelected: function(tag_id) {
