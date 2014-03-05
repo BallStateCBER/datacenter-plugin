@@ -68,14 +68,7 @@ class TagHelper extends AppHelper {
 		$this->Html->css('/data_center/css/tag_editor.css', array('inline' => false));
 		$this->Js->buffer("
 			TagManager.tags = ".$this->Js->object($this->availableTagsForJs($available_tags)).";
-			TagManager.createTagList(TagManager.tags, $('#$container_id'));
-			$('#new_tag_rules_toggler').click(function (event) {
-				event.preventDefault();
-				$('#new_tag_rules').slideToggle(200);
-			});
-			$('#example_selectable_tag').click(function (event) {
-				event.preventDefault();
-			});
+			TagManager.init('#$container_id');
 		");
 	}
 }
