@@ -13,8 +13,25 @@ var TagManager = {
 		$('#example_selectable_tag').click(function (event) {
 			event.preventDefault();
 		});
+		this.checkRequirements();
 	},
 	
+	checkRequirements: function () {
+		if (! window.jQuery) { 
+			this.showError('Error: The tag manager requires jQuery.');
+		} else {
+			if (! $.effects || ! $.effects['transfer']) {
+				this.showError('Error: The jQuery UI transfer effect is required for the tag manager but has not been loaded.');
+			}
+			if (! $.isFunction($.fn.autocomplete)) {
+				this.showError('Error: The jQuery UI autocomplete widget is required for the tag manager but has not been loaded.');
+			}
+		}
+	},
+	
+	showError: function (message) {
+		this.container.prepend('<p style="color: red;">'+message+'</p>');
+	},
 	
 	/**
 	 * @param data An array of tag objects
