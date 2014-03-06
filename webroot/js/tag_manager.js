@@ -20,7 +20,7 @@ var TagManager = {
 		if (! window.jQuery) { 
 			this.showError('Error: The tag manager requires jQuery.');
 		} else {
-			if (! $.effects || ! $.effects['transfer']) {
+			if (! $.effects || ! $.effects.effect['transfer']) {
 				this.showError('Error: The jQuery UI transfer effect is required for the tag manager but has not been loaded.');
 			}
 			if (! $.isFunction($.fn.autocomplete)) {
