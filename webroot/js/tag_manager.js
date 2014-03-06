@@ -13,7 +13,7 @@ var TagManager = {
 		if (options.hasOwnProperty('tags')) {
 			this.tags = options.tags;
 		}
-		this.createTagList(this.tags);
+		this.createTagList(this.tags, this.container);
 		
 		if (options.hasOwnProperty('selected_tags')) {
 			this.selected_tags = options.selected_tags;
@@ -56,9 +56,8 @@ var TagManager = {
 	 * @param container $('#container_id')
 	 * @returns
 	 */
-	createTagList: function(data) {
+	createTagList: function(data, container) {
 		var list = $('<ul></ul>');
-		var available_tags_container = $('#available_tags');
 		for (var i = 0; i < data.length; i++) {
 			var tag_id = data[i].id;
 			var tag_name = data[i].name;
@@ -136,7 +135,7 @@ var TagManager = {
 				}
 			}
 		}
-		this.container.append(list);
+		container.append(list);
 	},
 
 	tagIsSelected: function(tag_id) {
