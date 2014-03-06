@@ -3,8 +3,8 @@ var TagManager = {
 	selected_tags: [],
 	container: null,
 
-	init: function (container_selector) {
-		this.container = $(container_selector);
+	init: function () {
+		this.container = $('#available_tags');
 		this.createTagList(this.tags);
 		$('#new_tag_rules_toggler').click(function (event) {
 			event.preventDefault();

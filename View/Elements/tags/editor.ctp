@@ -79,7 +79,7 @@
 </div>
 
 <?php
-	echo $this->Tag->setup($available_tags, 'available_tags', $selected_tags);
+	echo $this->Tag->setup($available_tags, $selected_tags);
 	if ($allow_custom) {
 		$this->Js->buffer("TagManager.setupCustomTagInput();");
 	}

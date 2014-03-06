@@ -54,7 +54,7 @@ class TagHelper extends AppHelper {
 		return $retval;
 	}
 
-	public function setup($available_tags, $container_id, $selected_tags = array()) {
+	public function setup($available_tags, $selected_tags = array()) {
 		if (! empty($selected_tags)) {
 			$selected_tags = $this->formatSelectedTags($selected_tags);
 			$this->Js->buffer("
@@ -66,7 +66,7 @@ class TagHelper extends AppHelper {
 		$this->Html->css('/data_center/css/tag_editor.css', array('inline' => false));
 		$this->Js->buffer("
 			TagManager.tags = ".$this->Js->object($this->availableTagsForJs($available_tags)).";
-			TagManager.init('#$container_id');
+			TagManager.init();
 		");
 	}
 }
