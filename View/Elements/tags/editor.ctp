@@ -7,7 +7,6 @@
 <div class="input" id="tag_editing">
 	<div id="available_tags_container">
 		<div id="available_tags"></div>
-		<div id="popular_tags"></div>
 	</div>
 	<div class="footnote">
 		Click <img src="/data_center/img/icons/menu-collapsed.png" /> to expand groups. 
