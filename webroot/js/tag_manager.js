@@ -3,16 +3,34 @@ var TagManager = {
 	selected_tags: [],
 	container: null,
 
-	init: function () {
-		this.container = $('#available_tags');
+	init: function (options) {
+		if (options.hasOwnProperty('container')) {
+			this.container = $(options.container);
+		} else {
+			this.container = $('#available_tags');
+		}
+		
+		if (options.hasOwnProperty('tags')) {
+			this.tags = options.tags;
+		}
 		this.createTagList(this.tags);
+		
+		if (options.hasOwnProperty('selected_tags')) {
+			this.selected_tags = options.selected_tags;
+		}
+		if (this.selected_tags.length > 0) {
+			TagManager.preselectTags(this.selected_tags);
+		}
+		
 		$('#new_tag_rules_toggler').click(function (event) {
 			event.preventDefault();
 			$('#new_tag_rules').slideToggle(200);
 		});
+		
 		$('#example_selectable_tag').click(function (event) {
 			event.preventDefault();
 		});
+		
 		this.checkRequirements();
 	},
 	

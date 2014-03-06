@@ -57,16 +57,13 @@ class TagHelper extends AppHelper {
 	public function setup($available_tags, $selected_tags = array()) {
 		$this->Html->script('/data_center/js/tag_manager.js', array('inline' => false));
 		$this->Html->css('/data_center/css/tag_editor.css', array('inline' => false));
-		$this->Js->buffer("
-			TagManager.tags = ".$this->Js->object($this->availableTagsForJs($available_tags)).";
-			TagManager.init();
-		");
+		$params = array(
+			'tags: '.$this->Js->object($this->availableTagsForJs($available_tags))
+		);
 		if (! empty($selected_tags)) {
 			$selected_tags = $this->formatSelectedTags($selected_tags);
-			$this->Js->buffer("
-				TagManager.selected_tags = ".$this->Js->object($this->selectedTagsForJs($selected_tags)).";
-				TagManager.preselectTags(TagManager.selected_tags);
-			");
+			$params[] = 'selected_tags: '.$this->Js->object($this->selectedTagsForJs($selected_tags));
 		}
+		$this->Js->buffer('TagManager.init({'.implode(', ', $params).'});');
 	}
 }
