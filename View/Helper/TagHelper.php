@@ -62,8 +62,6 @@ class TagHelper extends AppHelper {
 				TagManager.preselectTags(TagManager.selected_tags);
 			");
 		}
-		$this->Html->css('/data_center/jquery_ui/css/smoothness/jquery-ui-1.10.0.custom.min.css', array('inline' => false));
-		$this->Html->script('/data_center/jquery_ui/js/jquery-ui-1.10.0.custom.min.js', array('inline' => false));
 		$this->Html->script('/data_center/js/tag_manager.js', array('inline' => false));
 		$this->Html->css('/data_center/css/tag_editor.css', array('inline' => false));
 		$this->Js->buffer("
