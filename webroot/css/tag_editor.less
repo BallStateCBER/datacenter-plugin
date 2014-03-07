@@ -20,8 +20,7 @@
 }
 #available_tags {
 	border: 1px solid #aaa;
-	max-height: 300px; 
-	overflow: auto;
+	overflow: hidden;
 	padding: 5px;
 	
 	ul {
@@ -46,6 +45,10 @@
 				text-decoration: none;
 			}
 		}
+	}
+	> div {
+		max-height: 300px; 
+		overflow: auto;
 	}
 }
 #selected_tags_container {
