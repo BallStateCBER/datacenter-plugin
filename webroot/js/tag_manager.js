@@ -336,7 +336,6 @@ var TagManager = {
 				};
 				link.effect('transfer', options, 200, callback);
 			} else {
-				link.hide();
 				callback();
 			}
 		});
