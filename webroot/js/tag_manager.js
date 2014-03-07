@@ -13,7 +13,7 @@ var TagManager = {
 		if (options.hasOwnProperty('tags')) {
 			this.tags = options.tags;
 		}
-		this.createTagList(this.tags, this.container);
+		this.createTagTree(this.tags, this.container);
 		
 		if (options.hasOwnProperty('selected_tags')) {
 			this.selected_tags = options.selected_tags;
@@ -56,7 +56,7 @@ var TagManager = {
 	 * @param container $('#container_id')
 	 * @returns
 	 */
-	createTagList: function(data, container) {
+	createTagTree: function(data, container) {
 		var list = $('<ul></ul>');
 		for (var i = 0; i < data.length; i++) {
 			var tag_id = data[i].id;
@@ -99,7 +99,7 @@ var TagManager = {
 						
 						// Populate list if it is empty
 						if (children_container.is(':empty')) {
-							TagManager.createTagList(children, children_container);
+							TagManager.createTagTree(children, children_container);
 						}
 						
 						// Open/close
