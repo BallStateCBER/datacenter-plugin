@@ -79,7 +79,7 @@ var TagManager = {
 			var children = data[i].children;
 			var has_children = (children.length > 0);
 			var is_selectable = data[i].selectable;
-			var list_item = $('<li id="available_tag_li_'+tag_id+'"></li>');
+			var list_item = $('<li data-tag-id="'+tag_id+'"></li>');
 			var row = $('<div class="single_row"></div>');
 			list_item.append(row);
 			list.append(list_item);
@@ -161,7 +161,7 @@ var TagManager = {
 		for (var i = 0; i < this.tag_list.length; i++) {
 			var tag_name = this.tag_list[i];
 			var tag_id = this.tags_ids[tag_name];
-			var list_item = $('<li id="available_tag_li_'+tag_id+'"></li>');
+			var list_item = $('<li data-tag-id="'+tag_id+'"></li>');
 			
 			var tag_link = $('<a href="#" class="available_tag" title="Click to select" id="available_tag_'+tag_id+'"></a>');
 			tag_link.append(tag_name);
@@ -228,8 +228,12 @@ var TagManager = {
 		}
 	},
 
+	getAvailableTagListItem: function (tag_id) {
+		return this.container.find('> div:visible > ul > li[data-tag-id="'+tag_id+'"]');
+	},
+	
 	unselectTag: function(tag_id, unselect_link) {
-		var available_tag_list_item = $('#available_tag_li_'+tag_id);
+		var available_tag_list_item = this.getAvailableTagListItem(tag_id);
 		
 		// If available tag has not yet been loaded, then simply remove the selected tag
 		if (available_tag_list_item.length == 0) {
@@ -281,7 +285,7 @@ var TagManager = {
 		}
 		
 		// Add tag
-		var list_item = $('<a href="#" title="Click to remove" data-tag-id="'+tag_id+'" id="selected_tag_'+tag_id+'"></a>');
+		var list_item = $('<a href="#" title="Click to remove" data-tag-id="'+tag_id+'"></a>');
 		list_item.append(tag_name);
 		list_item.append('<input type="hidden" name="data[Tag][]" value="'+tag_id+'" />');
 		list_item.click(function (event) {
@@ -295,7 +299,7 @@ var TagManager = {
 		list_item.fadeIn(200);
 		
 		// If available tag has not yet been loaded, then return
-		var available_tag_list_item = $('#available_tag_li_'+tag_id);
+		var available_tag_list_item = this.getAvailableTagListItem(tag_id);
 		if (available_tag_list_item.length == 0) {
 			return;
 		}
@@ -303,7 +307,7 @@ var TagManager = {
 		// Hide/update link to add tag
 		var link = $('#available_tag_'+tag_id);
 		var options = {
-			to: '#selected_tag_'+tag_id,
+			to: '#selected_tags a[data-tag-id="'+tag_id+'"]',
 			className: 'ui-effects-transfer'
 		};
 		var callback = function() {
