@@ -246,34 +246,42 @@ var TagManager = {
 			available_link.removeClass('selected');
 		}
 		
-		var remove_link = function() {
-			unselect_link.fadeOut(200, function() {
-				unselect_link.remove();
-				if ($('#selected_tags').children().length == 0) {
-					$('#selected_tags_container').slideUp(200);
-				}
-			});
-		};
-		
 		available_tag_list_item.each(function () {
 			var li = $(this);
 			if (li.parent().is(':visible')) {
-				li.slideDown(200);
+				var transfer_effect = function () { console.log('Is li visible? '+li.is(':visible'));
+					var options = {
+						to: li.children('a').first(),
+						className: 'ui-effects-transfer'
+					};
+					var remove_link = function () {
+						unselect_link.fadeOut(200, function () {
+							unselect_link.remove();
+							if ($('#selected_tags').children().length == 0) {
+								$('#selected_tags_container').slideUp(200);
+							}
+						});
+					};
+					unselect_link.effect('transfer', options, 200, remove_link);
+				};
+				li.slideDown(200, transfer_effect);
 			} else {
 				li.show();
+				unselect_link.fadeOut(200, function () {
+					unselect_link.remove();
+					if ($('#selected_tags').children().length == 0) {
+						$('#selected_tags_container').slideUp(200);
+					}
+				});
 			}
 		});
 		
 		// If available tag is not visible, then no transfer effect
 		available_link.each(function () {
 			if ($(this).is(':visible')) {
-				var options = {
-					to: this,
-					className: 'ui-effects-transfer'
-				};
-				unselect_link.effect('transfer', options, 200, remove_link);
+				
 			} else {
-				remove_link();
+				
 			}
 		});
 	},
