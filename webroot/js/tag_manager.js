@@ -13,7 +13,10 @@ var TagManager = {
 		if (options.hasOwnProperty('tags')) {
 			this.tags = options.tags;
 		}
-		this.createTagTree(this.tags, this.container);
+		
+		var tree_container = $('<div id="available_tags_tree"></div>');
+		this.container.append(tree_container);
+		this.createTagTree(this.tags, tree_container);
 		
 		if (options.hasOwnProperty('selected_tags')) {
 			this.selected_tags = options.selected_tags;
