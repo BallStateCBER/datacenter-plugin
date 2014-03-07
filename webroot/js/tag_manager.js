@@ -154,11 +154,40 @@ var TagManager = {
 	},
 	
 	createTagList: function () {
-		var list_container = $('<div id="available_tags_list"></div>');
 		this.container.append(list_container);
 		this.processTagList(this.tags);
 		this.tag_list.sort();
-		console.log('Tag list is: '+this.tag_list);
+		var list = $('<ul></ul>');
+		for (var i = 0; i < this.tag_list.length; i++) {
+			var tag_name = this.tag_list[i];
+			var tag_id = this.tags_ids[tag_name];
+			var list_item = $('<li id="available_tag_li_'+tag_id+'"></li>');
+			
+			var tag_link = $('<a href="#" class="available_tag" title="Click to select" id="available_tag_'+tag_id+'"></a>');
+			tag_link.append(tag_name);
+			(function(tag_id) {
+				tag_link.click(function (event) {
+					event.preventDefault();
+					var link = $(this);
+					var tag_name = link.html();
+					var list_item = link.parents('li').first();
+					TagManager.selectTag(tag_id, tag_name, list_item);
+				});
+			})(tag_id);
+			list_item.append(tag_link);
+			list.append(list_item);
+		}
+		
+		var tabs = $('<ul></ul>');
+		tabs.append($('<li><a href="#available_tags_tree">Tree</a></li>'));
+		tabs.append($('<li><a href="#available_tags_list">List</a></li>'));
+		this.container.prepend(tabs);
+		
+		var list_container = $('<div id="available_tags_list"></div>');
+		list_container.append(list);
+		this.container.append(list_container);
+		
+		this.container.tabs();
 	},
 	
 	processTagList: function (data) {
