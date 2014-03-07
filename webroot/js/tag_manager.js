@@ -233,7 +233,7 @@ var TagManager = {
 	},
 	
 	unselectTag: function(tag_id, unselect_link) {
-		var available_tag_list_item = this.getAvailableTagListItem(tag_id);
+		var available_tag_list_item = this.container.find('li[data-tag-id="'+tag_id+'"]');
 		
 		// If available tag has not yet been loaded, then simply remove the selected tag
 		if (available_tag_list_item.length == 0) {
@@ -259,18 +259,27 @@ var TagManager = {
 			});
 		};
 		
-		available_tag_list_item.slideDown(200);
+		available_tag_list_item.each(function () {
+			var li = $(this);
+			if (li.is(':visible')) {
+				li.slideDown(200);
+			} else {
+				li.show();
+			}
+		});
 		
 		// If available tag is not visible, then no transfer effect
-		if (available_link.is(':visible')) {
-			var options = {
-				to: '#available_tag_'+tag_id,
-				className: 'ui-effects-transfer'
-			};
-			unselect_link.effect('transfer', options, 200, remove_link);
-		} else {
-			remove_link();
-		}
+		available_link.each(function () {
+			if ($(this).is(':visible')) {
+				var options = {
+					to: this,
+					className: 'ui-effects-transfer'
+				};
+				unselect_link.effect('transfer', options, 200, remove_link);
+			} else {
+				remove_link();
+			}
+		});
 	},
 
 	selectTag: function(tag_id, tag_name, available_tag_list_item) {
