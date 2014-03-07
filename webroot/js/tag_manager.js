@@ -228,10 +228,6 @@ var TagManager = {
 		}
 	},
 
-	getAvailableTagListItem: function (tag_id) {
-		return this.container.find('> div:visible > ul > li[data-tag-id="'+tag_id+'"]');
-	},
-	
 	unselectTag: function(tag_id, unselect_link) {
 		var available_tag_list_item = this.container.find('li[data-tag-id="'+tag_id+'"]');
 		
@@ -307,8 +303,7 @@ var TagManager = {
 		$('#selected_tags').append(list_item);
 		list_item.fadeIn(200);
 		
-		// If available tag has not yet been loaded, then return
-		var available_tag_list_item = this.getAvailableTagListItem(tag_id);
+		// If available tag has not yet been loaded, then there's no need to mess with its link
 		if ($('li[data-tag-id="'+tag_id+'"]').length == 0) {
 			return;
 		}
