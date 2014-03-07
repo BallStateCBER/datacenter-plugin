@@ -1,6 +1,16 @@
 var TagManager = {
+	// A tree-shaped object provided to init()
 	tags: [],
+	
+	// A one-dimensional array populated by createTagList()
+	tag_list: [],
+	
+	// An object with tag_name: tag_id pairs populated by createTagList()
+	tags_ids: {},
+
+	// Used by preselectTags()
 	selected_tags: [],
+	
 	container: null,
 
 	init: function (options) {
@@ -17,6 +27,8 @@ var TagManager = {
 		var tree_container = $('<div id="available_tags_tree"></div>');
 		this.container.append(tree_container);
 		this.createTagTree(this.tags, tree_container);
+		
+		this.createTagList();
 		
 		if (options.hasOwnProperty('selected_tags')) {
 			this.selected_tags = options.selected_tags;
@@ -139,6 +151,31 @@ var TagManager = {
 			}
 		}
 		container.append(list);
+	},
+	
+	createTagList: function () {
+		var list_container = $('<div id="available_tags_list"></div>');
+		this.container.append(list_container);
+		this.processTagList(this.tags);
+		this.tag_list.sort();
+		console.log('Tag list is: '+this.tag_list);
+	},
+	
+	processTagList: function (data) {
+		for (var i = 0; i < data.length; i++) {
+			var tag_id = data[i].id;
+			var tag_name = data[i].name;
+			var children = data[i].children;
+			var has_children = (children.length > 0);
+			var is_selectable = data[i].selectable;
+			if (is_selectable) {
+				this.tag_list.push(tag_name);
+				this.tags_ids.tag_name = tag_id;
+			}
+			if (has_children) {
+				this.processTagList(children);
+			}
+		}
 	},
 
 	tagIsSelected: function(tag_id) {
