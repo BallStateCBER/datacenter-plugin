@@ -257,7 +257,7 @@ var TagManager = {
 		
 		available_tag_list_item.each(function () {
 			var li = $(this);
-			if (li.is(':visible')) {
+			if (li.parent().is(':visible')) {
 				li.slideDown(200);
 			} else {
 				li.show();
