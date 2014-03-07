@@ -32,9 +32,6 @@
 			cursor: pointer;
 		}
 	}
-	li {
-		list-style-type: none;
-	}
 	a {
 		&.selected {
 			color: #000; 
@@ -49,6 +46,16 @@
 	> div {
 		max-height: 300px; 
 		overflow: auto;
+	}
+	.ui-widget-content {
+		a {
+			color: #0099BB;
+		}
+	}
+}
+#available_tags_tree {
+	li {
+		list-style-type: none;
 	}
 }
 #selected_tags_container {
