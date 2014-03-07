@@ -324,7 +324,7 @@ var TagManager = {
 					available_tag_list_item.slideUp(200);
 				}
 			};
-			if (link.closest('div').is(':visible')) {
+			if (link.is(':visible')) {
 				var options = {
 					to: '#selected_tags a[data-tag-id="'+tag_id+'"]',
 					className: 'ui-effects-transfer'
