@@ -85,7 +85,7 @@ var TagManager = {
 			list.append(list_item);
 			
 			if (is_selectable) {
-				var tag_link = $('<a href="#" class="available_tag" title="Click to select" id="available_tag_'+tag_id+'"></a>');
+				var tag_link = $('<a href="#" class="available_tag" title="Click to select" data-tag-id="'+tag_id+'"></a>');
 				tag_link.append(tag_name);
 				(function(tag_id) {
 					tag_link.click(function (event) {
@@ -157,13 +157,13 @@ var TagManager = {
 		this.container.append(list_container);
 		this.processTagList(this.tags);
 		this.tag_list.sort();
-		var list = $('<ul></ul>');
+		var list = $('<ul></ul>'); console.log(this.tags_ids);
 		for (var i = 0; i < this.tag_list.length; i++) {
 			var tag_name = this.tag_list[i];
 			var tag_id = this.tags_ids[tag_name];
 			var list_item = $('<li data-tag-id="'+tag_id+'"></li>');
 			
-			var tag_link = $('<a href="#" class="available_tag" title="Click to select" id="available_tag_'+tag_id+'"></a>');
+			var tag_link = $('<a href="#" class="available_tag" title="Click to select" data-tag-id="'+tag_id+'"></a>');
 			tag_link.append(tag_name);
 			(function(tag_id) {
 				tag_link.click(function (event) {
@@ -199,7 +199,7 @@ var TagManager = {
 			var is_selectable = data[i].selectable;
 			if (is_selectable) {
 				this.tag_list.push(tag_name);
-				this.tags_ids.tag_name = tag_id;
+				this.tags_ids[tag_name] = tag_id;
 			}
 			if (has_children) {
 				this.processTagList(children);
@@ -304,20 +304,28 @@ var TagManager = {
 			return;
 		}
 		
-		// Hide/update link to add tag
-		var link = $('#available_tag_'+tag_id);
-		var options = {
-			to: '#selected_tags a[data-tag-id="'+tag_id+'"]',
-			className: 'ui-effects-transfer'
-		};
-		var callback = function() {
-			link.addClass('selected');
-			var has_children = (available_tag_list_item.children('div.children').length != 0);
-			if (! has_children) {
-				available_tag_list_item.slideUp(200);
+		// Hide/update links to add tag
+		var links = this.container.find('a[data-tag-id="'+tag_id+'"]');
+		links.each(function () {
+			var link = $(this);
+			var callback = function() {
+				link.addClass('selected');
+				var has_children = (available_tag_list_item.children('div.children').length != 0);
+				if (! has_children) {
+					available_tag_list_item.slideUp(200);
+				}
+			};
+			if (link.closest('div').is(':visible')) {
+				var options = {
+					to: '#selected_tags a[data-tag-id="'+tag_id+'"]',
+					className: 'ui-effects-transfer'
+				};
+				link.effect('transfer', options, 200, callback);
+			} else {
+				link.hide();
+				callback();
 			}
-		};
-		link.effect('transfer', options, 200, callback);
+		});
 	},
 
 	setupAutosuggest: function(selector) {
