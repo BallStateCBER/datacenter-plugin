@@ -309,7 +309,7 @@ var TagManager = {
 		
 		// If available tag has not yet been loaded, then return
 		var available_tag_list_item = this.getAvailableTagListItem(tag_id);
-		if (available_tag_list_item.length == 0) {
+		if ($('li[data-tag-id="'+tag_id+'"]').length == 0) {
 			return;
 		}
 		
@@ -319,9 +319,14 @@ var TagManager = {
 			var link = $(this);
 			var callback = function() {
 				link.addClass('selected');
-				var has_children = (available_tag_list_item.children('div.children').length != 0);
-				if (! has_children) {
-					available_tag_list_item.slideUp(200);
+				var parent_li = link.closest('li');
+				var children = parent_li.children('.children');
+				if (children.length == 0) {
+					if (parent_li.is(':visible')) {
+						parent_li.slideUp(200);
+					} else {
+						parent_li.hide();
+					}
 				}
 			};
 			if (link.is(':visible')) {
