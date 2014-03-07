@@ -157,7 +157,7 @@ var TagManager = {
 		this.container.append(list_container);
 		this.processTagList(this.tags);
 		this.tag_list.sort();
-		var list = $('<ul></ul>'); console.log(this.tags_ids);
+		var list = $('<ul></ul>');
 		for (var i = 0; i < this.tag_list.length; i++) {
 			var tag_name = this.tag_list[i];
 			var tag_id = this.tags_ids[tag_name];
@@ -245,7 +245,7 @@ var TagManager = {
 		}
 
 		// Remove 'selected' class from available tag
-		var available_link = $('#available_tag_'+tag_id);
+		var available_link = this.container.find('a[data-tag-id="'+tag_id+'"]');
 		if (available_link.hasClass('selected')) {
 			available_link.removeClass('selected');
 		}
