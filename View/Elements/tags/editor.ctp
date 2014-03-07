@@ -5,9 +5,7 @@
 ?>
 
 <div class="input" id="tag_editing">
-	<div id="available_tags_container">
-		<div id="available_tags"></div>
-	</div>
+	<div id="available_tags"></div>
 	<div class="footnote">
 		Click <img src="/data_center/img/icons/menu-collapsed.png" /> to expand groups. 
 		Click 
