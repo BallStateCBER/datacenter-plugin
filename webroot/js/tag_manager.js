@@ -244,6 +244,8 @@ var TagManager = {
 			var li = $(this);
 			var link = $(this).find('a[data-tag-id="'+tag_id+'"]');
 			link.removeClass('selected');
+			
+			// If the available tag will be immediately visible (not in a closed tab or closed tree branch)
 			if (li.parent().is(':visible')) {
 				var transfer_effect = function () {
 					var options = {
@@ -251,28 +253,29 @@ var TagManager = {
 						className: 'ui-effects-transfer'
 					};
 					var remove_link = function () {
-						unselect_link.fadeOut(200, function () {
-							unselect_link.remove();
-							if ($('#selected_tags').children().length == 0) {
-								$('#selected_tags_container').slideUp(200);
-							}
-						});
+						TagManager.removeUnselectLink(unselect_link);
 					};
 					unselect_link.effect('transfer', options, 200, remove_link);
 				};
 				li.slideDown(200, transfer_effect);
+			
+			// If the available tag will not be immediately visible
 			} else {
 				li.show();
-				unselect_link.fadeOut(200, function () {
-					unselect_link.remove();
-					if ($('#selected_tags').children().length == 0) {
-						$('#selected_tags_container').slideUp(200);
-					}
-				});
+				TagManager.removeUnselectLink(unselect_link);
 			}
 		});
 	},
 
+	removeUnselectLink: function (unselect_link) {
+		unselect_link.fadeOut(200, function () {
+			unselect_link.remove();
+			if ($('#selected_tags').children().length == 0) {
+				$('#selected_tags_container').slideUp(200);
+			}
+		});
+	},
+	
 	selectTag: function(tag_id, tag_name, available_tag_list_item) {
 		var selected_container = $('#selected_tags_container');
 		if (! selected_container.is(':visible')) {
