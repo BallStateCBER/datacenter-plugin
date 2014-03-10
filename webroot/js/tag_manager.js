@@ -267,6 +267,15 @@ var TagManager = {
 		});
 	},
 
+	availableTagIsVisible: function (tag_link) {
+		var parent_li = tag_link.closest('li');
+		if (! parent_li.is(':visible')) {
+			return false;
+		}
+		var tab_content = tag_link.closest('#available_tags_tree, #available_tags_list');
+		return (tag_link.position().top + tag_link.height() > 0 && tag_link.position().top < tab_content.height());
+	},
+	
 	removeUnselectLink: function (unselect_link) {
 		unselect_link.fadeOut(200, function () {
 			unselect_link.remove();
