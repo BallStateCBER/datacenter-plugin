@@ -233,18 +233,15 @@ var TagManager = {
 		
 		// If available tag has not yet been loaded, then simply remove the selected tag
 		if (available_tag_list_item.length == 0) {
-			unselect_link.remove();
-			if ($('#selected_tags').children().length == 0) {
-				$('#selected_tags_container').slideUp(200);
-			}
+			TagManager.removeUnselectLink(unselect_link);
 			return;
 		}
 		
 		available_tag_list_item.each(function () {
-			var li = $(this);
 			var link = $(this).find('a[data-tag-id="'+tag_id+'"]');
 			link.removeClass('selected');
-			li.slideDown(duration, function () {
+			
+			$(this).slideDown(duration, function () {
 				if (TagManager.availableTagIsVisible(link)) {
 					var options = {
 						to: link,
