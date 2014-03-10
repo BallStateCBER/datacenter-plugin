@@ -240,11 +240,8 @@ var TagManager = {
 			return;
 		}
 
-		// Remove 'selected' class from available tag
-		var available_link = this.container.find('a[data-tag-id="'+tag_id+'"]');
-		if (available_link.hasClass('selected')) {
-			available_link.removeClass('selected');
-		}
+		// Remove 'selected' class from available tags
+		this.container.find('a.selected[data-tag-id="'+tag_id+'"]').removeClass('selected');
 		
 		available_tag_list_item.each(function () {
 			var li = $(this);
