@@ -246,7 +246,7 @@ var TagManager = {
 		available_tag_list_item.each(function () {
 			var li = $(this);
 			if (li.parent().is(':visible')) {
-				var transfer_effect = function () { console.log('Is li visible? '+li.is(':visible'));
+				var transfer_effect = function () {
 					var options = {
 						to: li.children('a').first(),
 						className: 'ui-effects-transfer'
