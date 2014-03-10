@@ -92,7 +92,7 @@ var TagManager = {
 						event.preventDefault();
 						var link = $(this);
 						var tag_name = link.html();
-						var list_item = link.parents('li').first();
+						var list_item = link.closest('li');
 						TagManager.selectTag(tag_id, tag_name, list_item);
 					});
 				})(tag_id);
@@ -170,7 +170,7 @@ var TagManager = {
 					event.preventDefault();
 					var link = $(this);
 					var tag_name = link.html();
-					var list_item = link.parents('li').first();
+					var list_item = link.closest('li');
 					TagManager.selectTag(tag_id, tag_name, list_item);
 				});
 			})(tag_id);
