@@ -275,15 +275,6 @@ var TagManager = {
 				});
 			}
 		});
-		
-		// If available tag is not visible, then no transfer effect
-		available_link.each(function () {
-			if ($(this).is(':visible')) {
-				
-			} else {
-				
-			}
-		});
 	},
 
 	selectTag: function(tag_id, tag_name, available_tag_list_item) {
