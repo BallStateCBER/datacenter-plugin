@@ -268,12 +268,11 @@ var TagManager = {
 	},
 
 	availableTagIsVisible: function (tag_link) {
-		var parent_li = tag_link.closest('li');
-		if (! parent_li.is(':visible')) {
+		if (! tag_link.is(':visible')) {
 			return false;
 		}
-		var tab_content = tag_link.closest('#available_tags_tree, #available_tags_list');
-		return (tag_link.position().top + tag_link.height() > 0 && tag_link.position().top < tab_content.height());
+		var scrollable_area = $('#available_tags_tree:visible, #available_tags_list:visible');
+		return (tag_link.position().top + tag_link.height() > 0 && tag_link.position().top < scrollable_area.height()) {
 	},
 	
 	removeUnselectLink: function (unselect_link) {
