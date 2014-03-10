@@ -239,12 +239,11 @@ var TagManager = {
 			}
 			return;
 		}
-
-		// Remove 'selected' class from available tags
-		this.container.find('a.selected[data-tag-id="'+tag_id+'"]').removeClass('selected');
 		
 		available_tag_list_item.each(function () {
 			var li = $(this);
+			var link = $(this).find('a[data-tag-id="'+tag_id+'"]');
+			link.removeClass('selected');
 			if (li.parent().is(':visible')) {
 				var transfer_effect = function () {
 					var options = {
