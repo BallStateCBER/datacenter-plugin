@@ -260,12 +260,12 @@ var TagManager = {
 		});
 	},
 
-	availableTagIsVisible: function (tag_link) {
-		if (! tag_link.is(':visible')) {
+	availableTagIsVisible: function (link) {
+		if (! link.is(':visible')) {
 			return false;
 		}
 		var scrollable_area = $('#available_tags_tree:visible, #available_tags_list:visible');
-		return (tag_link.position().top + tag_link.height() > 0 && tag_link.position().top < scrollable_area.height());
+		return (link.position().top + link.height() > 0 && link.position().top < scrollable_area.height());
 	},
 	
 	removeUnselectLink: function (unselect_link) {
