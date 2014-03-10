@@ -244,26 +244,19 @@ var TagManager = {
 			var li = $(this);
 			var link = $(this).find('a[data-tag-id="'+tag_id+'"]');
 			link.removeClass('selected');
-			
-			// If the available tag will be immediately visible (not in a closed tab or closed tree branch)
-			if (li.parent().is(':visible')) {
-				var transfer_effect = function () {
+			li.slideDown(duration, function () {
+				if (TagManager.availableTagIsVisible(link)) {
 					var options = {
-						to: li.children('a').first(),
+						to: link,
 						className: 'ui-effects-transfer'
 					};
-					var remove_link = function () {
+					unselect_link.effect('transfer', options, 200, function () {
 						TagManager.removeUnselectLink(unselect_link);
-					};
-					unselect_link.effect('transfer', options, 200, remove_link);
-				};
-				li.slideDown(200, transfer_effect);
-			
-			// If the available tag will not be immediately visible
-			} else {
-				li.show();
-				TagManager.removeUnselectLink(unselect_link);
-			}
+					});
+				} else {
+					TagManager.removeUnselectLink(unselect_link);
+				}
+			});
 		});
 	},
 
@@ -272,7 +265,7 @@ var TagManager = {
 			return false;
 		}
 		var scrollable_area = $('#available_tags_tree:visible, #available_tags_list:visible');
-		return (tag_link.position().top + tag_link.height() > 0 && tag_link.position().top < scrollable_area.height()) {
+		return (tag_link.position().top + tag_link.height() > 0 && tag_link.position().top < scrollable_area.height());
 	},
 	
 	removeUnselectLink: function (unselect_link) {
