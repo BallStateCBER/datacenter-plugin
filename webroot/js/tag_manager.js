@@ -278,7 +278,7 @@ var TagManager = {
 			var link = $(this).find('a[data-tag-id="'+tag_id+'"]');
 			link.removeClass('selected');
 			
-			$(this).slideDown(duration, function () {
+			$(this).slideDown(200, function () {
 				if (TagManager.availableTagIsVisible(link)) {
 					var options = {
 						to: link,
