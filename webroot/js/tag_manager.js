@@ -59,6 +59,9 @@ var TagManager = {
 			if (! $.isFunction($.fn.autocomplete)) {
 				this.showError('Error: The jQuery UI autocomplete widget is required for the tag manager but has not been loaded.');
 			}
+			if (! $.isFunction($.fn.tabs)) {
+				this.showError('Error: The jQuery UI tabs widget is required for the tag manager but has not been loaded.');
+			}
 		}
 	},
 	
