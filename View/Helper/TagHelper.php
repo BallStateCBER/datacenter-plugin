@@ -54,7 +54,7 @@ class TagHelper extends AppHelper {
 		return $retval;
 	}
 
-	public function setup($available_tags, $selected_tags = array()) {
+	public function setup($available_tags, $selected_tags = array(), $options = array()) {
 		$this->Html->script('/data_center/js/tag_manager.js', array('inline' => false));
 		$this->Html->css('/data_center/css/tag_editor.css', array('inline' => false));
 		$params = array(
@@ -63,6 +63,16 @@ class TagHelper extends AppHelper {
 		if (! empty($selected_tags)) {
 			$selected_tags = $this->formatSelectedTags($selected_tags);
 			$params[] = 'selected_tags: '.$this->Js->object($this->selectedTagsForJs($selected_tags));
+		}
+		if (! empty($options)) {
+			foreach ($options as $var => $val) {
+				if ($val === true) {
+					$val = 'true';
+				} elseif ($val === false) {
+					$val = 'false';
+				}
+				$params[] = "$var: $val";
+			}
 		}
 		$this->Js->buffer('TagManager.init({'.implode(', ', $params).'});');
 	}
