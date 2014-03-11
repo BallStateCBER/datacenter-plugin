@@ -13,9 +13,9 @@ var TagManager = {
 	
 	container: null,
 
-	show_tree: false,
+	show_tree: true,
 	
-	show_list: true,
+	show_list: false,
 	
 	init: function (options) {
 		if (options.hasOwnProperty('container')) {
@@ -41,9 +41,7 @@ var TagManager = {
 		}
 		
 		if (this.show_tree) {
-			var tree_container = $('<div id="available_tags_tree"></div>');
-			this.container.append(tree_container);
-			this.createTagTree(this.tags, tree_container);
+			this.createTagTree();
 		}
 		
 		if (this.show_list) {
@@ -93,12 +91,18 @@ var TagManager = {
 		this.container.prepend('<p style="color: red;">'+message+'</p>');
 	},
 	
+	createTagTree: function () {
+		var tree_container = $('<div id="available_tags_tree"></div>');
+		this.container.append(tree_container);
+		this.createTagTreeBranch(this.tags, tree_container);
+	},
+	
 	/**
 	 * @param data An array of tag objects
 	 * @param container $('#container_id')
 	 * @returns
 	 */
-	createTagTree: function(data, container) {
+	createTagTreeBranch: function(data, container) {
 		var list = $('<ul></ul>');
 		for (var i = 0; i < data.length; i++) {
 			var tag_id = data[i].id;
@@ -141,7 +145,7 @@ var TagManager = {
 						
 						// Populate list if it is empty
 						if (children_container.is(':empty')) {
-							TagManager.createTagTree(children, children_container);
+							TagManager.createTagTreeBranch(children, children_container);
 						}
 						
 						// Open/close
