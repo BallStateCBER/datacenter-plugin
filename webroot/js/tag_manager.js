@@ -266,39 +266,68 @@ var TagManager = {
 	},
 
 	unselectTag: function(tag_id, unselect_link) {
-		var available_tag_list_item = this.container.find('li[data-tag-id="'+tag_id+'"]');
+		var available_tag_links = this.container.find('a[data-tag-id="'+tag_id+'"]');
+		
+		//var available_tag_list_item = this.container.find('li[data-tag-id="'+tag_id+'"]');
 		
 		// If available tag has not yet been loaded, then simply remove the selected tag
-		if (available_tag_list_item.length == 0) {
+		if (available_tag_links.length == 0) {
 			TagManager.removeUnselectLink(unselect_link);
 			return;
 		}
-		
-		available_tag_list_item.each(function () {
-			var link = $(this).find('a[data-tag-id="'+tag_id+'"]');
-			link.removeClass('selected');
+	
+		available_tag_links.each(function () {
+			var link = $(this).removeClass('selected');
+			var li = link.closest('li');
+			var open_tab = link.closest('#available_tags_tree, #available_tags_list');
 			
-			$(this).slideDown(200, function () {
-				if (TagManager.availableTagIsVisible(link)) {
-					var options = {
-						to: link,
-						className: 'ui-effects-transfer'
-					};
-					unselect_link.effect('transfer', options, 200, function () {
-						TagManager.removeUnselectLink(unselect_link);
-					});
-				} else {
+			// If this link is in an unopened tab, don't animate anything
+			if (! open_tab.is(':visible')) {
+				li.show();
+				// Only remove the unselect link if this is the only iteration of this loop
+				// Otherwise, the link in the opened tab needs the unselect link present for the transfer effect 
+				if (available_tag_links.length === 1) {
 					TagManager.removeUnselectLink(unselect_link);
 				}
-			});
+				return;
+			}
+			
+			var transfer_effect = function () {
+				// Don't show the transfer effect if there's no visible link to transfer to
+				if (! TagManager.availableTagIsVisible(link, open_tab)) {
+					TagManager.removeUnselectLink(unselect_link);
+					return;
+				}
+				var options = {
+					to: link,
+					className: 'ui-effects-transfer'
+				};
+				unselect_link.effect('transfer', options, 200, function () {
+					TagManager.removeUnselectLink(unselect_link);
+				});
+			};
+			
+			// If the link container doesn't need to be revealed
+			if (li.is(':visible')) {
+				transfer_effect();
+			
+			// If the link container needs to be revealed (and would be visible during the reveal)
+			} else if (li.parent().is(':visible')) {
+				li.slideDown(200, function () {
+					transfer_effect();
+				});
+				
+			} else {
+				li.show();
+				TagManager.removeUnselectLink(unselect_link);
+			}
 		});
 	},
 
-	availableTagIsVisible: function (link) {
+	availableTagIsVisible: function (link, scrollable_area) {
 		if (! link.is(':visible')) {
 			return false;
 		}
-		var scrollable_area = $('#available_tags_tree:visible, #available_tags_list:visible');
 		return (link.position().top + link.height() > 0 && link.position().top < scrollable_area.height());
 	},
 	
