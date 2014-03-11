@@ -48,9 +48,14 @@ var TagManager = {
 			this.createTagList();
 		}
 		
+		if (this.show_tree && this.show_list) {
+			this.setupTabs();
+		}
+		
 		if (options.hasOwnProperty('selected_tags')) {
 			this.selected_tags = options.selected_tags;
 		}
+		
 		if (this.selected_tags.length > 0) {
 			TagManager.preselectTags(this.selected_tags);
 		}
@@ -85,6 +90,14 @@ var TagManager = {
 			}
 		}
 		return passes;
+	},
+	
+	setupTabs: function () {
+		var tabs = $('<ul></ul>');
+		tabs.append($('<li><a href="#available_tags_tree">Tree</a></li>'));
+		tabs.append($('<li><a href="#available_tags_list">List</a></li>'));
+		this.container.prepend(tabs);
+		this.container.tabs();
 	},
 	
 	showError: function (message) {
@@ -209,16 +222,9 @@ var TagManager = {
 			list.append(list_item);
 		}
 		
-		var tabs = $('<ul></ul>');
-		tabs.append($('<li><a href="#available_tags_tree">Tree</a></li>'));
-		tabs.append($('<li><a href="#available_tags_list">List</a></li>'));
-		this.container.prepend(tabs);
-		
 		var list_container = $('<div id="available_tags_list"></div>');
 		list_container.append(list);
 		this.container.append(list_container);
-		
-		this.container.tabs();
 	},
 	
 	processTagList: function (data) {
