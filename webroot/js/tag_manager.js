@@ -20,6 +20,10 @@ var TagManager = {
 			this.container = $('#available_tags');
 		}
 		
+		if (! this.checkRequirements()) {
+			return;
+		}
+		
 		if (options.hasOwnProperty('tags')) {
 			this.tags = options.tags;
 		}
@@ -45,24 +49,28 @@ var TagManager = {
 		$('#example_selectable_tag').click(function (event) {
 			event.preventDefault();
 		});
-		
-		this.checkRequirements();
 	},
 	
 	checkRequirements: function () {
+		var passes = true;
 		if (! window.jQuery) { 
 			this.showError('Error: The tag manager requires jQuery.');
+			passes = false;
 		} else {
 			if (! $.effects || ! $.effects.effect['transfer']) {
 				this.showError('Error: The jQuery UI transfer effect is required for the tag manager but has not been loaded.');
+				passes = false;
 			}
 			if (! $.isFunction($.fn.autocomplete)) {
 				this.showError('Error: The jQuery UI autocomplete widget is required for the tag manager but has not been loaded.');
+				passes = false;
 			}
 			if (! $.isFunction($.fn.tabs)) {
 				this.showError('Error: The jQuery UI tabs widget is required for the tag manager but has not been loaded.');
+				passes = false;
 			}
 		}
+		return passes;
 	},
 	
 	showError: function (message) {
