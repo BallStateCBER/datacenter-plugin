@@ -13,11 +13,23 @@ var TagManager = {
 	
 	container: null,
 
+	show_tree: false,
+	
+	show_list: true,
+	
 	init: function (options) {
 		if (options.hasOwnProperty('container')) {
 			this.container = $(options.container);
 		} else {
 			this.container = $('#available_tags');
+		}
+		
+		if (options.hasOwnProperty('show_tree')) {
+			this.show_tree = options.show_tree;
+		}
+		
+		if (options.hasOwnProperty('show_list')) {
+			this.show_list = options.show_list;
 		}
 		
 		if (! this.checkRequirements()) {
@@ -28,11 +40,15 @@ var TagManager = {
 			this.tags = options.tags;
 		}
 		
-		var tree_container = $('<div id="available_tags_tree"></div>');
-		this.container.append(tree_container);
-		this.createTagTree(this.tags, tree_container);
+		if (this.show_tree) {
+			var tree_container = $('<div id="available_tags_tree"></div>');
+			this.container.append(tree_container);
+			this.createTagTree(this.tags, tree_container);
+		}
 		
-		this.createTagList();
+		if (this.show_list) {
+			this.createTagList();
+		}
 		
 		if (options.hasOwnProperty('selected_tags')) {
 			this.selected_tags = options.selected_tags;
