@@ -39,7 +39,7 @@
 		*/ ?>
 		<link rel="shortcut icon" href="/data_center/img/favicon.ico" />
 		<link href='http://fonts.googleapis.com/css?family=Asap:400,400italic,700' rel='stylesheet' type='text/css'>
-		<?php 
+		<?php
 			if (Configure::read('debug') == 0) {
 				echo $this->Html->css('DataCenter.datacenter');
 				echo $this->Html->css('style');
@@ -49,17 +49,17 @@
 				//but right now css helper doesn't really like less; that's why the next two lines use the assetUrl.
 				//echo $this->Html->css('DataCenter.datacenter.less?','stylesheet/less');
 				//echo $this->Html->css('DataCenter.style.less','stylesheet/less');
-				
-				
+
+
 				echo '<link rel="stylesheet/less" type="text/css" href="'.$this->Html->assetUrl('DataCenter.datacenter.less', array('pathPrefix' => CSS_URL)).'" />';
 				echo '<link rel="stylesheet/less" type="text/css" href="'.$this->Html->assetUrl('style.less', array('pathPrefix' => CSS_URL)).'" />';
 				echo '<script type="text/javascript">less = { env: \'development\' };</script>';
-				echo $this->Html->script('DataCenter.less-1.3.0.min');
+				echo $this->Html->script('DataCenter.less-1.7.0.min');
 			}
 			echo $this->fetch('css');
 			echo $this->fetch('scriptTop');
 		?>
-		
+
 		<!--[if lt IE 9]>
 			<script src="/data_center/js/html5shiv-printshiv.js"></script>
 		<![endif]-->
@@ -249,23 +249,23 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script>window.jQuery || document.write('<script src="/data_center/js/jquery-1.9.1.min.js"><\/script>')</script>
 
-		<?php 
+		<?php
 			echo $this->Html->script('DataCenter.datacenter');
-			echo $this->fetch('script'); 
+			echo $this->fetch('script');
 			echo $this->Js->writeBuffer();
 			echo $this->element('DataCenter.analytics');
 		?>
-		
-		<script type="text/javascript"> 
-			var $buoop = {vs:{i:9,f:20,o:11,s:5,n:9}} 
-			$buoop.ol = window.onload; 
-			window.onload=function(){ 
-				try {if ($buoop.ol) $buoop.ol();}catch (e) {} 
-				var e = document.createElement("script"); 
-				e.setAttribute("type", "text/javascript"); 
-				e.setAttribute("src", "http://browser-update.org/update.js"); 
-				document.body.appendChild(e); 
-			} 
-		</script> 
+
+		<script type="text/javascript">
+			var $buoop = {vs:{i:9,f:20,o:11,s:5,n:9}}
+			$buoop.ol = window.onload;
+			window.onload=function(){
+				try {if ($buoop.ol) $buoop.ol();}catch (e) {}
+				var e = document.createElement("script");
+				e.setAttribute("type", "text/javascript");
+				e.setAttribute("src", "http://browser-update.org/update.js");
+				document.body.appendChild(e);
+			}
+		</script>
 	</body>
 </html>
