@@ -9,7 +9,7 @@
 		<meta charset="utf-8" />
 		<link rel="dns-prefetch" href="//ajax.googleapis.com" />
 		<title>
-			<?php 
+			<?php
 				$title = Configure::read('data_center_subsite_title');
 				if (isset($title_for_layout) && $title_for_layout) {
 					$title = $title_for_layout.' - '.$title;
@@ -33,7 +33,7 @@
 				less = { env: 'development' };
 			</script>
 		<?php endif; ?>
-		<script src="/data_center/js/less-1.3.0.min.js" type="text/javascript"></script>
+		<script src="/data_center/js/less-1.7.0.min.js" type="text/javascript"></script>
 		<?php echo $this->fetch('css'); ?>
 		<script src="/data_center/js/modernizr-2.5.3.min.js"></script>
 		<?php echo $this->fetch('scriptTop'); ?>
@@ -53,7 +53,7 @@
   		<?php if (Configure::read('google_analytics_id')): ?>
 			<?php echo $this->element('DataCenter.analytics'); ?>
 		<?php endif; ?>
-		
+
 		<?php echo $this->Js->writeBuffer(); ?>
 	</body>
 </html>
