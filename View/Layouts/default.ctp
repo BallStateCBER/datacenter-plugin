@@ -65,7 +65,6 @@
 		<![endif]-->
 	</head>
 	<body>
-		<?php echo $this->element('flash_messages', array(), array('plugin' => 'DataCenter')); ?>
 		<?php /*
 			Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
 			chromium.org/developers/how-tos/chrome-frame-getting-started
