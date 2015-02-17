@@ -27,7 +27,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Asap:400,400italic,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet/less" type="text/css" href="/data_center/css/datacenter.less" />
 		<link rel="stylesheet/less" type="text/css" href="/css/style.less" />
-		<link rel="icon" type="image/png" href="/img/icons/chart.png" />
+		<link rel="icon" type="image/png" href="http://cberdata.org/data_center/img/icons/chart.png" />
 		<?php if (Configure::read('debug') != 0): ?>
 			<script type="text/javascript">
 				less = { env: 'development' };

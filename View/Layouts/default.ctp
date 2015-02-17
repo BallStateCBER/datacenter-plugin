@@ -37,7 +37,7 @@
 			More useful tag suggestions at http://html5boilerplate.com/docs/head-Tips/
 			Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons
 		*/ ?>
-		<link rel="shortcut icon" href="/data_center/img/favicon.ico" />
+		<link rel="shortcut icon" href="http://cberdata.org/data_center/img/favicon.ico" />
 		<link href='http://fonts.googleapis.com/css?family=Asap:400,400italic,700' rel='stylesheet' type='text/css'>
 		<?php
 			if (Configure::read('debug') == 0) {
@@ -184,8 +184,9 @@
 		<footer id="footer">
 			<div class="max_width">
 				<div id="cberlogo_copyright">
-					<?php
-						echo $this->Html->image('DataCenter.BallStateCBER-red.png',array('url'=>'http://www.bsu.edu/cber'));?>
+					<a href="http://www.bsu.edu/cber">
+						<img src="http://cberdata.org/data_center/img/BallStateCBER-red.png" />
+					</a>
 					<p>
 						&copy; Center for Business and Economic Research, Ball State University
 					</p>
