@@ -1,3 +1,8 @@
+<?php
+	$on_localhost = stripos($_SERVER['HTTP_HOST'], 'localhost') !== false;
+	$domain = $on_localhost ? '' : 'http://cberdata.org';
+	$plugin_path = $domain.'/data_center';
+?>
 <!DOCTYPE html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
@@ -37,25 +42,21 @@
 			More useful tag suggestions at http://html5boilerplate.com/docs/head-Tips/
 			Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons
 		*/ ?>
-		<link rel="shortcut icon" href="http://cberdata.org/data_center/img/favicon.ico" />
+		<link rel="shortcut icon" href="<?php echo $plugin_path; ?>/img/favicon.ico" />
 		<link href='http://fonts.googleapis.com/css?family=Asap:400,400italic,700' rel='stylesheet' type='text/css'>
-		<?php
-			if (Configure::read('debug') == 0) {
-				echo $this->Html->css('DataCenter.datacenter');
+		<?php if (Configure::read('debug') == 0): ?>
+			<?php
+				echo $this->Html->css($plugin_path.'/css/datacenter.css');
 				echo $this->Html->css('style');
-			} else {
+			?>
+		<?php else: ?>
+			<link rel="stylesheet/less" type="text/css" href="<?php echo $plugin_path; ?>/css/datacenter.less" />
+			<link rel="stylesheet/less" type="text/css" href="/css/style.less" />
+			<script type="text/javascript">less = { env: 'development' };</script>
+			<?php echo $this->Html->script($plugin_path.'/js/less-1.7.0.min.js'); ?>
+		<?php endif; ?>
 
-				//Trying to keep things relative; and not domain name dependent:
-				//but right now css helper doesn't really like less; that's why the next two lines use the assetUrl.
-				//echo $this->Html->css('DataCenter.datacenter.less?','stylesheet/less');
-				//echo $this->Html->css('DataCenter.style.less','stylesheet/less');
-
-
-				echo '<link rel="stylesheet/less" type="text/css" href="'.$this->Html->assetUrl('DataCenter.datacenter.less', array('pathPrefix' => CSS_URL)).'" />';
-				echo '<link rel="stylesheet/less" type="text/css" href="'.$this->Html->assetUrl('style.less', array('pathPrefix' => CSS_URL)).'" />';
-				echo '<script type="text/javascript">less = { env: \'development\' };</script>';
-				echo $this->Html->script('DataCenter.less-1.7.0.min');
-			}
+		<?php
 			echo $this->fetch('css');
 			echo $this->fetch('scriptTop');
 		?>
@@ -185,7 +186,7 @@
 			<div class="max_width">
 				<div id="cberlogo_copyright">
 					<a href="http://www.bsu.edu/cber">
-						<img src="http://cberdata.org/data_center/img/BallStateCBER-red.png" />
+						<img src="<?php echo $plugin_path; ?>/img/BallStateCBER-red.png" />
 					</a>
 					<p>
 						&copy; Center for Business and Economic Research, Ball State University
@@ -247,10 +248,10 @@
 
 		<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script>window.jQuery || document.write('<script src="/data_center/js/jquery-1.9.1.min.js"><\/script>')</script>
+		<script>window.jQuery || document.write('<script src="<?php echo $plugin_path; ?>/js/jquery-1.9.1.min.js"><\/script>')</script>
 
 		<?php
-			echo $this->Html->script('http://cberdata.org/data_center/js/datacenter.js');
+			echo $this->Html->script($plugin_path.'/js/datacenter.js');
 			echo $this->fetch('script');
 			echo $this->Js->writeBuffer();
 			echo $this->element('DataCenter.analytics');
