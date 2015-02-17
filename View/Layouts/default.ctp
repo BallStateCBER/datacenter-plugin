@@ -249,7 +249,7 @@
 		<script>window.jQuery || document.write('<script src="/data_center/js/jquery-1.9.1.min.js"><\/script>')</script>
 
 		<?php
-			echo $this->Html->script('DataCenter.datacenter');
+			echo $this->Html->script('http://cberdata.org/data_center/js/datacenter.js');
 			echo $this->fetch('script');
 			echo $this->Js->writeBuffer();
 			echo $this->element('DataCenter.analytics');
