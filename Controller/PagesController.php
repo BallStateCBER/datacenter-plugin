@@ -6,4 +6,11 @@ class PagesController extends AppController {
 	public function phpinfo() {
 		$this->layout = 'ajax';
 	}
+
+	public function clear_cache() {
+		$this->set(array(
+			'result' => Cache::clear() && clearCache()
+		));
+		$this->layout = 'simple';
+	}
 }
