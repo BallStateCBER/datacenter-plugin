@@ -19,6 +19,13 @@ class BackupComponent extends Component {
 			throw new ForbiddenException('Invalid security key provided.');
 		}
 
+		App::uses('Folder', 'Utility');
+		$path = APP.DS.'db_backups';
+		$folder = new Folder();
+		if (! $folder->cd($path)) {
+			throw new InternalErrorException('This website\'s database backup directory was not found.');
+		}
+
 		// The following was adapted from http://stackoverflow.com/a/20345956/52530
 		$return = '';
 
@@ -82,7 +89,12 @@ class BackupComponent extends Component {
 		// Set the default file name
 		$fileName = $databaseName . '-backup-' . date('Y-m-d_H-i-s') . '.sql';
 
-		// Serve the file as a download
+		// Save the file
+		App::uses('File', 'Utility');
+		$file = new File($path.DS.$fileName, true);
+		$file->write($return);
+
+		// Trigger a download of the file
 		$this->Controller->autoRender = false;
 		$this->Controller->response->type('Content-Type: text/x-sql');
 		$this->Controller->response->download($fileName);
