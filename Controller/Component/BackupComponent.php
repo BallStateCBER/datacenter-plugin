@@ -8,7 +8,7 @@ class BackupComponent extends Component {
 		parent::initialize($controller);
 	}
 
-	public function backup_database($modelName, $tables = '*', $db_backup_key = null) {
+	public function backup_database($modelName, $tables = '*', $backupName = 'backup', $db_backup_key = null) {
 		if (! Configure::check('db_backup_key')) {
 			throw new ForbiddenException('This website is not set up for database backups yet.');
 		}
@@ -87,7 +87,7 @@ class BackupComponent extends Component {
 		}
 
 		// Set the default file name
-		$fileName = $databaseName . '-backup-' . date('Y-m-d_H-i-s') . '.sql';
+		$fileName = "$databaseName-$backupName-".date('Y-m-d_H-i-s').'.sql';
 
 		// Save the file
 		App::uses('File', 'Utility');
