@@ -209,6 +209,9 @@
 								affecting the state and nation. <a href="http://www.bsu.edu/cber">Learn more</a>.
 							</p>
 						<?php endif; ?>
+						<p>
+							<a href="http://cberdata.org/terms">Terms of Service</a>
+						</p>
 					</section>
 					<section>
 						<h3>Center for Business and Economic Research</h3>
