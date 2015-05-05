@@ -129,7 +129,7 @@
 								'http://asset.cberdata.org'
 							);
 							$tabs[] = array(
-								'Brownfield Grant<br />Writers\' Tool',
+								'Brownfield Grant<br />Writers\' Toolbox',
 								'http://brownfield.cberdata.org'
 							);
 							$tabs[] = array(
