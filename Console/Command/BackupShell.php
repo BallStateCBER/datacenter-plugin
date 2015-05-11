@@ -19,7 +19,7 @@
  */
 class BackupShell extends Shell {
 
-    var $tasks = array('ProgressBar');
+    //var $tasks = array('ProgressBar');
 
     public function main() {
         //database configuration, default is "default"
@@ -97,7 +97,7 @@ class BackupShell extends Shell {
 
                     $result = $db->query('SELECT * FROM ' . $table.$limitation.';', false);
                     $num_fields = count($result);
-                    $this->ProgressBar->start($num_fields);
+                    //$this->ProgressBar->start($num_fields);
 
                     if($num_fields == 0){
                         $start = 0;
@@ -105,7 +105,7 @@ class BackupShell extends Shell {
                     }
 
                     foreach ($result as $row) {
-                        $this->ProgressBar->next();
+                        //$this->ProgressBar->next();
                         $return2 = 'INSERT INTO ' . $table . ' VALUES(';
                         $j = 0;
                         foreach ($row[$table] as $key => $inner) {
