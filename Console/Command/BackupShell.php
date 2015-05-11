@@ -37,7 +37,7 @@ class BackupShell extends Shell {
             $this->args[2] = 'db-backups/'.date('Y-m-d',time());
         }
 
-        App::import('Core', 'ConnectionManager');
+        App::uses('ConnectionManager', 'Model');
         $db = ConnectionManager::getDataSource($this->args[0]);
         $backupdir = $this->args[2];
         $seleced_tables = '*';
