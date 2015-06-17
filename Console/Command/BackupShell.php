@@ -5,6 +5,7 @@
  * www.mmahgoub.com
  * https://bitbucket.org/mmahgoub/cakephp-backupme
  *
+ *
  * @author      Mohammed Mahgoub <mmahgoub@mmahgoub.com>
  * @license     MIT
  *
@@ -36,6 +37,9 @@ class BackupShell extends Shell {
         if(!isset($this->args[2])){
             $this->args[2] = 'db-backups/'.date('Y-m-d',time());
         }
+
+        // Option to delete backups older than the specified length of time (e.g. "6 months") on backup success
+        $deleteOlderThan = isset($this->args[3]) ? $this->args[3] : false;
 
         App::uses('ConnectionManager', 'Model');
         $db = ConnectionManager::getDataSource($this->args[0]);
@@ -144,6 +148,35 @@ class BackupShell extends Shell {
             $this->out('---------------------------------------------------------------');
             $this->out(' Yay! Backup Completed!');
             $this->out('---------------------------------------------------------------');
+
+            if ($deleteOlderThan !== false) {
+                $this->out(' ', 2);
+                $this->out('---------------------------------------------------------------');
+                $this->out(" Deleting backups older than $deleteOlderThan");
+                $this->out('---------------------------------------------------------------');
+
+                App::uses('Folder', 'Utility');
+                App::uses('File', 'Utility');
+                $dir = new Folder($backupdir);
+                $files = $dir->find('.*\.sql');
+                $oldBackupResults = array();
+                foreach ($files as $file) {
+                    $file = new File($dir->pwd() . DS . $file);
+                    if ($file->lastChange() < strtotime("- $deleteOlderThan")) {
+                        $oldBackupResults[] = $file->delete() ? 'Deleted '.$file->name : 'ERROR DELETING '.$file->name;
+                    }
+                }
+
+                if (empty($oldBackupResults)) {
+                    $this->out('None found');
+                } else {
+                    foreach ($oldBackupResults as $result) {
+                        $this->out($result);
+                    }
+                }
+                $this->out(' ');
+                $this->out('Done!');
+            }
 
         }else{
             $this->out(' ', 2);
