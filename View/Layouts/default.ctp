@@ -254,6 +254,7 @@
 		<script>window.jQuery || document.write('<script src="<?php echo $domain.$plugin_path; ?>/js/jquery-1.9.1.min.js"><\/script>')</script>
 
 		<?php
+			echo $this->fetch('flash_messages');
 			echo $this->Html->script($domain.$plugin_path.'/js/datacenter.js');
 			echo $this->fetch('script');
 			echo $this->Js->writeBuffer();
