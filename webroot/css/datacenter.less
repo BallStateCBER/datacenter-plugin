@@ -4,7 +4,7 @@
 @maxContentWidth:	1000px;
 
 /* BASIC TAGS */
-html, 
+html,
 body {
     background-color: #3A4040;
     color: #000000;
@@ -63,7 +63,7 @@ ol {
 ul {
     list-style-position: outside;
     list-style-type: disc;
-    
+
     > li {
         list-style-position: outside;
         list-style-type: disc;
@@ -76,16 +76,16 @@ acronym {
     cursor: default;
 }
 br.clear {
-    clear: both; 
+    clear: both;
     height: 0px;
 }
 ul.unstyled {
-	margin: 0; 
+	margin: 0;
 	padding: 0;
-	
+
 	li {
-	    list-style-type: none; 
-	    margin: 0; 
+	    list-style-type: none;
+	    margin: 0;
 	    padding: 0;
 	}
 }
@@ -96,13 +96,13 @@ a {
     cursor: pointer;
     font-weight: inherit;
     text-decoration: none;
-    
+
     &:visited {
         color: #008CA8;
     }
     &:hover {
         text-decoration: underline;
-        
+
         span {
             text-decoration: underline;
         }
@@ -112,7 +112,7 @@ a {
     }
     &.with_icon {
         text-decoration: none;
-        
+
         img {
             vertical-align: text-top;
         }
@@ -127,12 +127,12 @@ a {
 }
 
 /* FORMS */
-input[type="text"], 
-input[type="password"], 
-input[type="email"], 
-textarea, 
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea,
 select {
-    background-color: #FAFAFF; 
+    background-color: #FAFAFF;
     border: 1px solid #7F9DB9;
 }
 
@@ -142,7 +142,7 @@ select {
     left: 20px;
     position: fixed;
     z-index: 3;
-    
+
     .messages_wrapper {
         clear: both;
         max-height: 400px;
@@ -159,7 +159,7 @@ select {
         padding: 0 3px;
         margin: 0 20px 3px 0;
     }
-    p, 
+    p,
     pre {
         display: block;
         margin: 0 20px 0 0;
@@ -171,7 +171,7 @@ select {
 		font-size: 125%;
         margin: 0 20px 0 0;
         padding: 0px;
-        
+
         li {
 			/* Default "notification" mode, overridden by .error and .success */
 			background-color: #CFE5FF;
@@ -222,8 +222,8 @@ select {
 /* OTHER MESSAGES */
 div,
 p {
-    &.error_message, 
-    &.success_message, 
+    &.error_message,
+    &.success_message,
     &.notification_message {
         background-position: 5px 5px;
         border-radius: 5px;
@@ -231,7 +231,7 @@ p {
         border-style: solid;
         border-width: 1px;
         padding: 5px 5px 5px 25px;
-    }    
+    }
     &.error_message {
         background-color: #FFCBAF;
         background-image: url('/data_center/img/icons/cross-circle.png');
@@ -267,7 +267,7 @@ p {
     border-bottom: 5px solid #cc0000;
     height: 70px;
     position: relative;
-    
+
     .max_width {
         height: 65px;
         position: relative;
@@ -282,7 +282,7 @@ p {
         text-transform: uppercase;
         a {
             color: #cc0000;
-            
+
             &:hover {
                 color: #000;
                 text-decoration: none;
@@ -304,7 +304,7 @@ p {
 	float: right;
     line-height: 15px;
     padding-top: 2px;
-    
+
     input[type="text"] {
         background-color: #cadddc;
         border: 0;
@@ -339,7 +339,7 @@ p {
     bottom: 0;
     right: 0;
     position: absolute;
-    
+
     a {
         background-color: #CC0000;
         color: #FFF;
@@ -352,7 +352,7 @@ p {
         text-align: center;
         text-transform: uppercase;
         vertical-align: text-bottom;
-        
+
         &:last-child {
             margin-right: 0;
         }
@@ -397,7 +397,7 @@ p {
         float: right;
         text-align: center;
         width: 300px;
-        
+
         h2 {
             font-size: 120%;
             text-align: left;
@@ -405,7 +405,7 @@ p {
         p {
             margin: 0 0 10px 0;
             text-align: left;
-            
+
             &:last-of-type {
                 margin-bottom: 15px;
             }
@@ -418,14 +418,14 @@ p {
     font-size: 90%;
     line-height: 1.3em;
     text-align: left;
-    
+
     .max_width > section {
 		> section {
 			display: block;
             float: left;
             margin-left: 15px;
             width: 325px;
-            
+
             h3 {
                 font-size: 125%;
                 font-weight: bold;
@@ -464,7 +464,7 @@ p {
     letter-spacing: 2px;
     line-height: 110%;
     text-transform: uppercase;
-    width: 165px;
+    width: 185px;
 }
 #data_center_nameplate {
     color: #CC0000;
@@ -487,7 +487,7 @@ p {
 }
 #two_col_wrapper {
 	position: relative;
-    
+
     > div {
         background-color: #fff;
     }
@@ -519,14 +519,14 @@ p {
     padding: 15px;
     text-align: left;
     width: 200px;
-    
+
     h3 {
         font-size: 120%;
         font-weight: bold;
         margin: 20px 0 5px 0;
         text-transform: uppercase;
     }
-    > h3:first-child, 
+    > h3:first-child,
     > div:first-child > h3 {
         margin-top: 0;
     }
@@ -538,13 +538,13 @@ p {
     }
     > div {
         margin-bottom: 15px;
-        
+
         h3 {
             font-size: 11pt;
             font-weight: bold;
             margin-bottom: 5px;
         }
-        select, 
+        select,
         input {
             width: 150px;
         }
