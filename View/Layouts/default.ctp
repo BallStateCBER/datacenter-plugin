@@ -117,8 +117,8 @@
 								'http://commentaries.cberdata.org'
 							);
 							$tabs[] = array(
-								'Illinois-to-Indiana<br />Tax Savings Calculator',
-								'http://tax-comparison.cberdata.org'
+								'Community Readiness<br />Initiative',
+								'http://cri.cberdata.org'
 							);
 							$tabs[] = array(
 								'County<br />Profiles',
