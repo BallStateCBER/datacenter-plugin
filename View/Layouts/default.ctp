@@ -46,11 +46,11 @@
 		<link href='http://fonts.googleapis.com/css?family=Asap:400,400italic,700' rel='stylesheet' type='text/css'>
 		<?php if (Configure::read('debug') == 0): ?>
 			<?php
-				echo $this->Html->css($domain.$plugin_path.'/css/datacenter.css');
+				echo $this->Html->css($domain.$plugin_path.'/css/datacenter.cake2.css');
 				echo $this->Html->css('style');
 			?>
 		<?php else: ?>
-			<link rel="stylesheet/less" type="text/css" href="<?php echo $plugin_path; ?>/css/datacenter.less" />
+			<link rel="stylesheet/less" type="text/css" href="<?php echo $plugin_path; ?>/css/datacenter.cake2.less" />
 			<link rel="stylesheet/less" type="text/css" href="/css/style.less" />
 			<script type="text/javascript">less = { env: 'development' };</script>
 			<?php echo $this->Html->script($domain.$plugin_path.'/js/less-1.7.0.min.js'); ?>
