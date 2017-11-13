@@ -12,7 +12,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 	<head>
 		<?php echo $this->Html->charset(); ?>
-		<link rel="dns-prefetch" href="//ajax.googleapis.com" />
+		<link rel="dns-prefetch" href="https://ajax.googleapis.com" />
 		<title>
 			<?php
 				$title = Configure::read('data_center_subsite_title');
@@ -43,7 +43,7 @@
 			Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons
 		*/ ?>
 		<link rel="shortcut icon" href="<?php echo $plugin_path; ?>/img/favicon.ico" />
-		<link href='http://fonts.googleapis.com/css?family=Asap:400,400italic,700' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Asap:400,400italic,700' rel='stylesheet' type='text/css'>
 		<?php if (Configure::read('debug') == 0): ?>
 			<?php
 				echo $this->Html->css($plugin_path.'/css/datacenter.css');
@@ -250,7 +250,7 @@
 		</noscript>
 
 		<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script>window.jQuery || document.write('<script src="<?php echo $plugin_path; ?>/js/jquery-1.9.1.min.js"><\/script>')</script>
 
 		<?php
@@ -268,7 +268,7 @@
 				try {if ($buoop.ol) $buoop.ol();}catch (e) {}
 				var e = document.createElement("script");
 				e.setAttribute("type", "text/javascript");
-				e.setAttribute("src", "http://browser-update.org/update.js");
+				e.setAttribute("src", "https://browser-update.org/update.js");
 				document.body.appendChild(e);
 			}
 		</script>
