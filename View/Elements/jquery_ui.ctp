@@ -1,6 +1,6 @@
 <?php
 $on_localhost = stripos($_SERVER['HTTP_HOST'], 'localhost') !== false;
-$domain = $on_localhost ? '' : 'http://cberdata.org';
+$domain = $on_localhost ? '' : 'https://cberdata.org';
 $plugin_path = $domain.'/data_center';
 
 $this->Html->css($plugin_path.'/jquery-ui-1.11.3.custom/jquery-ui.min.css', array('inline' => false));
