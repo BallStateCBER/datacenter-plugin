@@ -3,7 +3,7 @@ Guide to using the CakePHP template for the CBER Data Center
 To create a new Data Center site (starting with a copy of app_blank),
 	Edit \app_subsite\Config\core.php
 		Change $prefix to something specific to this subsite
-		Set the second parameter in Configure::write('data_center_subsite_url', ''); (e.g. 'http://subsite.cberdata.org')
+		Set the second parameter in Configure::write('data_center_subsite_url', ''); (e.g. 'https://subsite.cberdata.org')
 		Set the second parameter in Configure::write('data_center_subsite_title', ''); (e.g. 'Title of Subsite')
 		Change the values of Security.salt and Security.cipherSeed
 		Open SimpLESS and drag any of this site's .less files into it so that .css files will be automatically generated
@@ -16,7 +16,7 @@ To create a new Data Center site (starting with an unmodified app directory),
 	Edit \app_subsite\Config\core.php
 		Change $prefix to something specific to this subsite
 		Add Configure::write('data_center_subsite_url', ''); 
-			Change the second parameter to the production URL of the subsite's home page (e.g. http://subsite.cberdata.org)
+			Change the second parameter to the production URL of the subsite's home page (e.g. https://subsite.cberdata.org)
 		Add Configure::write('data_center_subsite_title', '');
 			Change the second parameter to the subsite's title, which will be used in <title> and <h1 id="subsite_title">
 		Change the values of Security.salt and Security.cipherSeed

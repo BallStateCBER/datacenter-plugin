@@ -1,6 +1,6 @@
 <?php
 	$on_localhost = stripos($_SERVER['HTTP_HOST'], 'localhost') !== false;
-	$domain = $on_localhost ? '' : 'http://cberdata.org';
+	$domain = $on_localhost ? '' : 'https://cberdata.org';
 	$plugin_path = $domain.'/data_center';
 ?>
 <!doctype html>
@@ -29,7 +29,7 @@
 		<meta name="viewport" content="width=device-width" />
 		<meta http-equiv="imagetoolbar" content="false" />
 		<?php echo $this->fetch('meta'); ?>
-		<link href='http://fonts.googleapis.com/css?family=Asap:400,400italic,700' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/css?family=Asap:400,400italic,700" rel="stylesheet" type="text/css">
 		<link rel="stylesheet/less" type="text/css" href="<?php echo $plugin_path; ?>/css/datacenter.less" />
 		<link rel="stylesheet/less" type="text/css" href="/css/style.less" />
 		<link rel="icon" type="image/png" href="<?php echo $plugin_path; ?>/img/icons/chart.png" />

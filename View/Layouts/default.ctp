@@ -1,6 +1,6 @@
 <?php
 	$on_localhost = stripos($_SERVER['HTTP_HOST'], 'localhost') !== false;
-	$domain = $on_localhost ? '' : 'http://cberdata.org';
+	$domain = $on_localhost ? '' : 'https://cberdata.org';
     $plugin_path = '/data_center';
 ?>
 <!DOCTYPE html>
@@ -70,17 +70,17 @@
 			Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
 			chromium.org/developers/how-tos/chrome-frame-getting-started
 		*/ ?>
-		<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+		<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="https://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
 		<div id="above_footer">
 			<header id="header_top">
 				<div class="max_width">
 					<h1>
-						<a href="http://bsu.edu/cber">
+						<a href="https://bsu.edu/cber">
 							Center for Business and Economic Research
 						</a>
 						-
-						<a href="http://bsu.edu">
+						<a href="https://bsu.edu">
 							Ball State University
 						</a>
 					</h1>
@@ -97,7 +97,7 @@
 					</div>
 					*/ ?>
 					<br class="clear" />
-					<a href="http://cberdata.org/" id="data_center_nameplate">
+					<a href="https://cberdata.org/" id="data_center_nameplate">
 						CBER Data Center
 					</a>
 
@@ -106,35 +106,35 @@
 							$tabs = array();
 							$tabs[] = array(
 								'Projects and<br />Publications',
-								'http://projects.cberdata.org'
+								'https://projects.cberdata.org'
 							);
 							$tabs[] = array(
 								'Economic<br />Indicators',
-								'http://indicators.cberdata.org'
+								'https://indicators.cberdata.org'
 							);
 							$tabs[] = array(
 								'Weekly<br />Commentary',
-								'http://commentaries.cberdata.org'
+								'https://commentaries.cberdata.org'
 							);
 							$tabs[] = array(
 								'Community Readiness<br />Initiative',
-								'http://cri.cberdata.org'
+								'https://cri.cberdata.org'
 							);
 							$tabs[] = array(
 								'County<br />Profiles',
-								'http://profiles.cberdata.org'
+								'https://profiles.cberdata.org'
 							);
 							$tabs[] = array(
 								'Community<br />Asset Inventory',
-								'http://asset.cberdata.org'
+								'https://cair.cberdata.org'
 							);
 							$tabs[] = array(
 								'Brownfield Grant<br />Writers\' Toolbox',
-								'http://brownfield.cberdata.org'
+								'https://brownfield.cberdata.org'
 							);
 							$tabs[] = array(
 								'Conexus Indiana<br />Report Card',
-								'http://conexus.cberdata.org'
+								'https://conexus.cberdata.org'
 							);
 							$this_subsite_url = Configure::read('data_center_subsite_url');
 							foreach ($tabs as $tab) {
@@ -185,7 +185,7 @@
 		<footer id="footer">
 			<div class="max_width">
 				<div id="cberlogo_copyright">
-					<a href="http://www.bsu.edu/cber">
+					<a href="https://www.bsu.edu/cber">
 						<img src="<?php echo $plugin_path; ?>/img/BallStateCBER-red.png" />
 					</a>
 					<p>
@@ -204,13 +204,13 @@
 								makers, and the general public.
 							</p>
 							<p>
-								Ball State CBER Data Center (<a href="http://cberdata.org">cberdata.org</a>) is a product of the Center for Business and Economic Research at Ball State
+								Ball State CBER Data Center (<a href="https://cberdata.org">cberdata.org</a>) is a product of the Center for Business and Economic Research at Ball State
 								University. CBER's mission is to conduct relevant and timely public policy research on a wide range of economic issues
-								affecting the state and nation. <a href="http://www.bsu.edu/cber">Learn more</a>.
+								affecting the state and nation. <a href="https://www.bsu.edu/cber">Learn more</a>.
 							</p>
 						<?php endif; ?>
 						<p>
-							<a href="http://cberdata.org/terms">Terms of Service</a>
+							<a href="https://cberdata.org/terms">Terms of Service</a>
 						</p>
 					</section>
 					<section>
@@ -228,13 +228,13 @@
 							<dd><a href="mailto:cber@bsu.edu">cber@bsu.edu</a></dd>
 
 							<dt>Website:</dt>
-							<dd><a href="http://www.bsu.edu/cber">www.bsu.edu/cber</a></dd>
+							<dd><a href="https://www.bsu.edu/cber">www.bsu.edu/cber</a></dd>
 
 							<dt>Facebook:</dt>
-							<dd><a href="http://www.facebook.com/BallStateCBER">www.facebook.com/BallStateCBER</a></dd>
+							<dd><a href="https://www.facebook.com/BallStateCBER">www.facebook.com/BallStateCBER</a></dd>
 
 							<dt>Twitter:</dt>
-							<dd><a href="http://www.twitter.com/BallStateCBER">www.twitter.com/BallStateCBER</a></dd>
+							<dd><a href="https://www.twitter.com/BallStateCBER">www.twitter.com/BallStateCBER</a></dd>
 						</dl>
 					</section>
 				</section>
@@ -245,7 +245,7 @@
 			<div id="noscript" style="background-color: #FFCBAF; border: 1px solid #7F0000; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; box-shadow: 2px 2px 2px rgba(0, 0, 0, .3); -moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, .3); -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, .3); color: #7F0000; font-weight: bold; left: 15px; padding: 20px; position: absolute; right: 15px; top: 15px; z-index: 10;">
 				JavaScript is currently disabled in your browser.
 				For full functionality of this website, JavaScript must be enabled.
-				If you need assistance, <a href="http://www.enable-javascript.com/" target="_blank">Enable-JavaScript.com</a> provides instructions.
+				If you need assistance, <a href="https://www.enable-javascript.com/" target="_blank">Enable-JavaScript.com</a> provides instructions.
 			</div>
 		</noscript>
 
