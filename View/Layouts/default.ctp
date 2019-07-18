@@ -133,8 +133,8 @@
 								'https://brownfield.cberdata.org'
 							);
 							$tabs[] = array(
-								'Conexus Indiana<br />Report Card',
-								'https://conexus.cberdata.org'
+								'Manufacturing & Logistics<br />Report Card',
+								'https://mfgscorecard.cberdata.org/'
 							);
 							$this_subsite_url = Configure::read('data_center_subsite_url');
 							foreach ($tabs as $tab) {
