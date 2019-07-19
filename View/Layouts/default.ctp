@@ -133,7 +133,7 @@
 								'https://brownfield.cberdata.org'
 							);
 							$tabs[] = array(
-								'Manufacturing & Logistics<br />Report Card',
+								'Manufacturing<br />Scorecard',
 								'https://mfgscorecard.cberdata.org/'
 							);
 							$this_subsite_url = Configure::read('data_center_subsite_url');
