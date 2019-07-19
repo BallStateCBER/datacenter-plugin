@@ -134,7 +134,7 @@
 							);
 							$tabs[] = array(
 								'Manufacturing<br />Scorecard',
-								'https://mfgscorecard.cberdata.org/'
+								'https://mfgscorecard.cberdata.org'
 							);
 							$this_subsite_url = Configure::read('data_center_subsite_url');
 							foreach ($tabs as $tab) {
