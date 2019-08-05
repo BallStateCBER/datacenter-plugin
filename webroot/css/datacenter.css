@@ -1035,37 +1035,37 @@ footer {
 }
 /* GRADE COLORS */
 svg path.grade_a {
-  fill: #CC553E;
+  fill: #BA0C2F;
 }
 svg path.grade_b {
-  fill: #E69F5A;
+  fill: #CB6015;
 }
 svg path.grade_c {
-  fill: #E0C95A;
+  fill: #F1C400;
 }
 svg path.grade_d {
-  fill: #85BEBF;
+  fill: #88DBDF;
 }
 svg path.grade_f {
-  fill: #4B88AA;
+  fill: #004B87;
 }
 .grade_a {
-  background-color: #CC553E;
-  fill: #CC553E;
+  background-color: #BA0C2F;
+  fill: #BA0C2F;
 }
 .grade_b {
-  background-color: #E69F5A;
-  fill: #E69F5A;
+  background-color: #CB6015;
+  fill: #CB6015;
 }
 .grade_c {
-  background-color: #E0C95A;
-  fill: #E0C95A;
+  background-color: #F1C400;
+  fill: #F1C400;
 }
 .grade_d {
-  background-color: #85BEBF;
-  fill: #85BEBF;
+  background-color: #88DBDF;
+  fill: #88DBDF;
 }
 .grade_f {
-  background-color: #4B88AA;
-  fill: #4B88AA;
+  background-color: #004B87;
+  fill: #004B87;
 }
