@@ -117,10 +117,6 @@
 								'https://commentaries.cberdata.org'
 							);
 							$tabs[] = array(
-								'Community Readiness<br />Initiative',
-								'https://cri.cberdata.org'
-							);
-							$tabs[] = array(
 								'County<br />Profiles',
 								'https://profiles.cberdata.org'
 							);
