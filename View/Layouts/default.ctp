@@ -117,16 +117,8 @@
 								'https://commentaries.cberdata.org'
 							);
 							$tabs[] = array(
-								'County<br />Profiles',
-								'https://profiles.cberdata.org'
-							);
-							$tabs[] = array(
 								'Community<br />Asset Inventory',
 								'https://cair.cberdata.org'
-							);
-							$tabs[] = array(
-								'Brownfield Grant<br />Writers\' Toolbox',
-								'https://brownfield.cberdata.org'
 							);
 							$tabs[] = array(
 								'Manufacturing<br />Scorecard',
