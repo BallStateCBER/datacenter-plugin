@@ -105,23 +105,23 @@
 						<?php
 							$tabs = array();
 							$tabs[] = array(
-								'Projects and<br />Publications',
+								'Projects and Publications',
 								'https://projects.cberdata.org'
 							);
 							$tabs[] = array(
-								'Economic<br />Indicators',
+								'Economic Indicators',
 								'https://indicators.cberdata.org'
 							);
 							$tabs[] = array(
-								'Weekly<br />Commentary',
+								'Weekly Commentary',
 								'https://commentaries.cberdata.org'
 							);
 							$tabs[] = array(
-								'Community<br />Asset Inventory',
+								'Community Asset Inventory',
 								'https://cair.cberdata.org'
 							);
 							$tabs[] = array(
-								'Manufacturing<br />Scorecard',
+								'Manufacturing Scorecard',
 								'https://mfgscorecard.cberdata.org'
 							);
 							$this_subsite_url = Configure::read('data_center_subsite_url');
